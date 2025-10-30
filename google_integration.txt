@@ -1,0 +1,23 @@
+GOOGLE SHEETS + APPS SCRIPT – INTEGRACE FORMULÁŘE
+1) V Google Sheets vytvořte list „Kontakty Stínění s esencí“ (tab „Data“).
+2) V Rozšíření → Apps Script vložte kód (viz níže), nastavte SHEET_ID.
+3) Deploy → New deployment → Web app → Anyone → získané URL vložte do contact.html místo DEPLOYMENT_ID.
+4) Odeslat test. Záznam se uloží + přijde automatická odpověď (CZ/EN podle pole lang).
+
+APPS SCRIPT (Code.gs): 
+const SHEET_ID='PASTE_YOUR_SHEET_ID_HERE';
+const SHEET_NAME='Data';
+const FROM_NAME='Jana Segelberg';
+const FROM_EMAIL='hello@janasegelberg.com';
+function doGet(e){return ContentService.createTextOutput('OK');}
+function doPost(e){try{const p=e.parameter;const name=(p.name||'').trim();const email=(p.email||'').trim();const message=(p.message||'').trim();const lang=(p.lang||'cs').trim().toLowerCase();const ts=new Date();if(!email)return _json({ok:false,error:'missing email'},400);const ss=SpreadsheetApp.openById(SHEET_ID);const sh=ss.getSheetByName(SHEET_NAME)||ss.insertSheet(SHEET_NAME);if(sh.getLastRow()===0){sh.appendRow(['Timestamp','Name','Email','Message','Lang']);}sh.appendRow([ts,name,email,message,lang]);_sendAutoReply(email,name,lang);return _json({ok:true});}catch(err){return _json({ok:false,error:String(err)},500);}}
+function _sendAutoReply(email,name,lang){const subjectCs='Děkuji za vaši zprávu';const bodyCs=`Dobrý den${name?' '+name:''},
+děkuji, že jste se mi ozvali. Brzy vám pošlu inspiraci pro váš interiér — a také tipy na vůně, které pomáhají zklidnit prostor i mysl.
+
+S přáním krásného dne,
+Jana Segelberg`;const subjectEn='Thank you for your message';const bodyEn=`Hello${name?' '+name:''},
+thank you for reaching out. I’ll soon share inspiration for your interior — and tips on scents that help calm the space and the mind.
+
+With warm wishes,
+Jana Segelberg`;const subject=(lang==='en')?subjectEn:subjectCs;const body=(lang==='en')?bodyEn:bodyCs;GmailApp.sendEmail(email,subject,body,{name:FROM_NAME,from:FROM_EMAIL});}
+function _json(obj,code){const out=ContentService.createTextOutput(JSON.stringify(obj));out.setMimeType(ContentService.MimeType.JSON);return out;}

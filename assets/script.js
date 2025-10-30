@@ -1,53 +1,14 @@
-
-(function(){
-  const CS = 'cs', EN = 'en';
-  const qs = s => document.querySelectorAll(s);
-  const setLang = (lang) => {
-    localStorage.setItem('lang', lang);
-    const isEN = lang === EN;
-    qs('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (key.endsWith('_en')) { el.classList.toggle('hidden', !isEN); }
-      if (key.endsWith('_cs')) { el.classList.toggle('hidden', isEN); }
-    });
-    const title = document.querySelector('title[data-i18n="title"]');
-    if (title) { title.textContent = isEN ? 'Shade & Scent by Jana' : 'Jana Segelberg – Stínění s esencí'; }
-    document.documentElement.lang = isEN ? 'en' : 'cs';
-    const btnCs = document.getElementById('btn-cs');
-    const btnEn = document.getElementById('btn-en');
-    if (btnCs && btnEn){ btnCs.classList.toggle('active', !isEN); btnEn.classList.toggle('active', isEN); }
-  };
-  const initLang = () => setLang(localStorage.getItem('lang') || CS);
-
-  // Lightbox
-  const initLightbox = () => {
-    const lb = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    const close = document.querySelector('.lb-close');
-    if (!lb || !img || !close) return;
-
-    document.body.addEventListener('click', (e)=>{
-      const a = e.target.closest('.lightboxable');
-      if (!a) return;
-      e.preventDefault();
-      img.src = a.getAttribute('href');
-      lb.classList.add('show');
-      lb.setAttribute('aria-hidden', 'false');
-    });
-    const hide = () => {
-      lb.classList.remove('show');
-      lb.setAttribute('aria-hidden', 'true');
-      img.src = '';
-    };
-    lb.addEventListener('click', (e)=>{ if (e.target === lb) hide(); });
-    close.addEventListener('click', hide);
-    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') hide(); });
-  };
-
-  document.addEventListener('DOMContentLoaded', ()=>{
-    initLang();
-    document.getElementById('btn-cs')?.addEventListener('click', ()=>setLang(CS));
-    document.getElementById('btn-en')?.addEventListener('click', ()=>setLang(EN));
-    initLightbox();
-  });
-})();
+(function(){const CS='cs',EN='en';const qs=s=>document.querySelectorAll(s);
+function setLang(lang){localStorage.setItem('lang',lang);const isEN=lang===EN;
+qs('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(k.endsWith('_en'))el.classList.toggle('hidden',!isEN);if(k.endsWith('_cs'))el.classList.toggle('hidden',isEN);});
+const title=document.querySelector('title[data-i18n="title"]');if(title)title.textContent=isEN?'Shade & Scent by Jana':'Jana Segelberg – Stínění s esencí';
+document.documentElement.lang=isEN?'en':'cs';document.getElementById('btn-cs')?.classList.toggle('active',!isEN);document.getElementById('btn-en')?.classList.toggle('active',isEN);
+const lf=document.getElementById('langField');if(lf)lf.value=isEN?'en':'cs';}
+function initLang(){setLang(localStorage.getItem('lang')||CS);document.getElementById('btn-cs')?.addEventListener('click',()=>setLang(CS));document.getElementById('btn-en')?.addEventListener('click',()=>setLang(EN));}
+function initLightbox(){const lb=document.getElementById('lightbox');const img=document.getElementById('lightbox-img');const close=document.querySelector('.lb-close');if(!lb||!img||!close)return;
+document.body.addEventListener('click',e=>{const a=e.target.closest('.lightboxable');if(!a)return;e.preventDefault();img.src=a.getAttribute('href');lb.classList.add('show');lb.setAttribute('aria-hidden','false');});
+const hide=()=>{lb.classList.remove('show');lb.setAttribute('aria-hidden','true');img.src='';};lb.addEventListener('click',e=>{if(e.target===lb)hide();});close.addEventListener('click',hide);document.addEventListener('keydown',e=>{if(e.key==='Escape')hide();});}
+function initHamburger(){const btn=document.querySelector('.nav-toggle');const nav=document.getElementById('mainnav');if(!btn||!nav)return;btn.addEventListener('click',()=>{const open=nav.classList.toggle('show');btn.setAttribute('aria-expanded',open?'true':'false');});nav.addEventListener('click',e=>{if(e.target.tagName==='A'){nav.classList.remove('show');btn.setAttribute('aria-expanded','false');}});}
+function initFormAJAX(){const form=document.getElementById('contact-form');const status=document.getElementById('form-status');if(!form||!status)return;form.addEventListener('submit',async e=>{const endpoint=form.getAttribute('action');if(endpoint.includes('DEPLOYMENT_ID'))return;e.preventDefault();status.textContent=(localStorage.getItem('lang')==='en')?'Sending…':'Odesílám…';try{const fd=new FormData(form);const res=await fetch(endpoint,{method:'POST',body:fd});if(res.ok){status.textContent=(localStorage.getItem('lang')==='en')?'Thank you. I’ll be in touch soon.':'Děkuji. Brzy se vám ozvu.';form.reset();}else{status.textContent=(localStorage.getItem('lang')==='en')?'Error sending. Try again.':'Nepodařilo se odeslat. Zkuste to prosím znovu.';}}catch(err){status.textContent=(localStorage.getItem('lang')==='en')?'Network error. Try again.':'Chyba připojení. Zkuste to znovu.';}});}
+function initSeasonal(){const m=new Date().getMonth();const cs=['Zimní klid','Jarní svěžest','Letní vánek','Podzimní hřejivost'];const en=['Winter Calm','Spring Fresh','Summer Breeze','Autumn Warmth'];const idx=Math.floor(m/3);document.querySelectorAll('[data-i18n="seas_p_cs"]').forEach(el=>el.textContent=`Měsíční speciál – ${cs[idx]}.`);document.querySelectorAll('[data-i18n="seas_p_en"]').forEach(el=>el.textContent=`Monthly special – ${en[idx]}.`);}
+document.addEventListener('DOMContentLoaded',()=>{initLang();initLightbox();initHamburger();initFormAJAX();initSeasonal();});})();

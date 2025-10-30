@@ -1,29 +1,15 @@
-
 <!doctype html>
 <html lang="cs">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title data-i18n="title">Jana Segelberg – Stínění s esencí</title>
-  <meta name="description" content="Návrh a realizace vnitřního stínění: záclony, závěsy, rolety a římské rolety s jemným akcentem aromaterapie. Přirozený, ženský a profesionální přístup.">
+  <meta name="description" content="Vnitřní stínění a esence: záclony, závěsy, rolety a jemné vůně pro klidný domov.">
   <meta property="og:title" content="Jana Segelberg – Stínění s esencí">
-  <meta property="og:description" content="Proměňuji okna v příběhy. Záclony, závěsy a rolety, které krásně vypadají a skvěle fungují.">
+  <meta property="og:description" content="Proměňuji okna v příběhy. Esence a textilie, které tvoří atmosféru.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/og-hero.jpg">
   <meta name="theme-color" content="#d8c8a8">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Jana Segelberg – Stínění s esencí",
-    "image": "assets/images/og-hero.jpg",
-    "telephone": "+420724379309",
-    "email": "hello@janasegelberg.com",
-    "url": "https://example.com",
-    "areaServed": "Czech Republic",
-    "sameAs": []
-  }
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -38,16 +24,19 @@
         <span class="brand-line1 script hidden" data-i18n="brand_en">Shade &amp; Scent by Jana</span>
         <span class="brand-line2 hidden" data-i18n="tagline_en">Curtains, Blinds &amp; Aroma</span>
       </a>
-      <nav class="nav" aria-label="Main">
-        <a href="index.html" data-i18n="nav_home_cs">Domů</a>
-        <a href="about.html" data-i18n="nav_about_cs">O mně</a>
-        <a href="process.html" data-i18n="nav_process_cs">Jak to probíhá</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="mainnav" aria-label="Menu">☰</button>
+      <nav id="mainnav" class="nav" aria-label="Main">
         <a href="gallery.html" data-i18n="nav_gallery_cs">Galerie</a>
+        <a href="pricing.html" data-i18n="nav_pricing_cs">Kolik zaplatíte</a>
+        <a href="about.html" data-i18n="nav_about_cs">O&nbsp;nás</a>
+        <a href="process.html" data-i18n="nav_process_cs">Jak pracujeme</a>
+        <a href="essences.html" data-i18n="nav_essences_cs">Esence</a>
         <a href="contact.html" data-i18n="nav_contact_cs">Kontakt</a>
-        <a href="index.html" class="hidden" data-i18n="nav_home_en">Home</a>
+        <a href="gallery.html" class="hidden" data-i18n="nav_gallery_en">Gallery</a>
+        <a href="pricing.html" class="hidden" data-i18n="nav_pricing_en">Pricing</a>
         <a href="about.html" class="hidden" data-i18n="nav_about_en">About</a>
         <a href="process.html" class="hidden" data-i18n="nav_process_en">Process</a>
-        <a href="gallery.html" class="hidden" data-i18n="nav_gallery_en">Gallery</a>
+        <a href="essences.html" class="hidden" data-i18n="nav_essences_en">Essences</a>
         <a href="contact.html" class="hidden" data-i18n="nav_contact_en">Contact</a>
       </nav>
       <div class="lang-switch">
@@ -57,37 +46,25 @@
     </div>
   </header>
 
-<main class="section container">
-  <h1 class="script" data-i18n="contact_h1_cs">Kontakt</h1>
-  <h1 class="script hidden" data-i18n="contact_h1_en">Contact</h1>
-  <div class="contact-grid">
-    <div>
-      <p><strong>E-mail</strong><br><a href="mailto:hello@janasegelberg.com">hello@janasegelberg.com</a></p>
-      <p><strong>Telefon</strong><br><a href="tel:+420724379309">+420&nbsp;724&nbsp;379&nbsp;309</a></p>
-      <p data-i18n="contact_note_cs">Krátká úvodní konzultace je zdarma a nezávazná. Napište, kdy se vám hodí.</p>
-      <p class="hidden" data-i18n="contact_note_en">A brief intro call is free and no-strings. Tell me what time suits you.</p>
+  <main class="section container">
+    <h1 class="script" data-i18n="contact_h1_cs">Kontakt</h1>
+    <h1 class="script hidden" data-i18n="contact_h1_en">Contact</h1>
+    <div class="contact-grid">
+      <div>
+        <p><strong>E-mail</strong><br><a href="mailto:hello@janasegelberg.com">hello@janasegelberg.com</a></p>
+        <p><strong>Telefon</strong><br><a href="tel:+420724379309">+420&nbsp;724&nbsp;379&nbsp;309</a></p>
+      </div>
+      <form id="contact-form" class="contact-form" action="https://script.google.com/macros/s/DEPLOYMENT_ID/exec" method="POST">
+        <input type="hidden" name="lang" id="langField" value="cs">
+        <label><span data-i18n="form_name_cs">Jméno</span><span class="hidden" data-i18n="form_name_en">Name</span><input type="text" name="name" required></label>
+        <label><span data-i18n="form_email_cs">E-mail</span><span class="hidden" data-i18n="form_email_en">E-mail</span><input type="email" name="email" required></label>
+        <label><span data-i18n="form_msg_cs">Zpráva</span><span class="hidden" data-i18n="form_msg_en">Message</span><textarea name="message" rows="5" required></textarea></label>
+        <button class="btn" type="submit" data-i18n="form_send_cs">Odeslat</button>
+        <button class="btn hidden" type="submit" data-i18n="form_send_en">Send</button>
+        <p id="form-status" class="muted" aria-live="polite"></p>
+      </form>
     </div>
-    <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
-      <label>
-        <span data-i18n="form_name_cs">Jméno</span>
-        <span class="hidden" data-i18n="form_name_en">Name</span>
-        <input type="text" name="name" required>
-      </label>
-      <label>
-        <span data-i18n="form_email_cs">E-mail</span>
-        <span class="hidden" data-i18n="form_email_en">E-mail</span>
-        <input type="email" name="email" required>
-      </label>
-      <label>
-        <span data-i18n="form_msg_cs">Zpráva</span>
-        <span class="hidden" data-i18n="form_msg_en">Message</span>
-        <textarea name="message" rows="5" required></textarea>
-      </label>
-      <button class="btn" type="submit" data-i18n="form_send_cs">Odeslat</button>
-      <button class="btn hidden" type="submit" data-i18n="form_send_en">Send</button>
-    </form>
-  </div>
-</main>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">

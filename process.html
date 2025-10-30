@@ -1,29 +1,15 @@
-
 <!doctype html>
 <html lang="cs">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title data-i18n="title">Jana Segelberg – Stínění s esencí</title>
-  <meta name="description" content="Návrh a realizace vnitřního stínění: záclony, závěsy, rolety a římské rolety s jemným akcentem aromaterapie. Přirozený, ženský a profesionální přístup.">
+  <meta name="description" content="Vnitřní stínění a esence: záclony, závěsy, rolety a jemné vůně pro klidný domov.">
   <meta property="og:title" content="Jana Segelberg – Stínění s esencí">
-  <meta property="og:description" content="Proměňuji okna v příběhy. Záclony, závěsy a rolety, které krásně vypadají a skvěle fungují.">
+  <meta property="og:description" content="Proměňuji okna v příběhy. Esence a textilie, které tvoří atmosféru.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/og-hero.jpg">
   <meta name="theme-color" content="#d8c8a8">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Jana Segelberg – Stínění s esencí",
-    "image": "assets/images/og-hero.jpg",
-    "telephone": "+420724379309",
-    "email": "hello@janasegelberg.com",
-    "url": "https://example.com",
-    "areaServed": "Czech Republic",
-    "sameAs": []
-  }
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -38,16 +24,19 @@
         <span class="brand-line1 script hidden" data-i18n="brand_en">Shade &amp; Scent by Jana</span>
         <span class="brand-line2 hidden" data-i18n="tagline_en">Curtains, Blinds &amp; Aroma</span>
       </a>
-      <nav class="nav" aria-label="Main">
-        <a href="index.html" data-i18n="nav_home_cs">Domů</a>
-        <a href="about.html" data-i18n="nav_about_cs">O mně</a>
-        <a href="process.html" data-i18n="nav_process_cs">Jak to probíhá</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="mainnav" aria-label="Menu">☰</button>
+      <nav id="mainnav" class="nav" aria-label="Main">
         <a href="gallery.html" data-i18n="nav_gallery_cs">Galerie</a>
+        <a href="pricing.html" data-i18n="nav_pricing_cs">Kolik zaplatíte</a>
+        <a href="about.html" data-i18n="nav_about_cs">O&nbsp;nás</a>
+        <a href="process.html" data-i18n="nav_process_cs">Jak pracujeme</a>
+        <a href="essences.html" data-i18n="nav_essences_cs">Esence</a>
         <a href="contact.html" data-i18n="nav_contact_cs">Kontakt</a>
-        <a href="index.html" class="hidden" data-i18n="nav_home_en">Home</a>
+        <a href="gallery.html" class="hidden" data-i18n="nav_gallery_en">Gallery</a>
+        <a href="pricing.html" class="hidden" data-i18n="nav_pricing_en">Pricing</a>
         <a href="about.html" class="hidden" data-i18n="nav_about_en">About</a>
         <a href="process.html" class="hidden" data-i18n="nav_process_en">Process</a>
-        <a href="gallery.html" class="hidden" data-i18n="nav_gallery_en">Gallery</a>
+        <a href="essences.html" class="hidden" data-i18n="nav_essences_en">Essences</a>
         <a href="contact.html" class="hidden" data-i18n="nav_contact_en">Contact</a>
       </nav>
       <div class="lang-switch">
@@ -57,30 +46,30 @@
     </div>
   </header>
 
-<main class="section container">
-  <h1 class="script" data-i18n="proc_h1_cs">Jak to probíhá</h1>
-  <h1 class="script hidden" data-i18n="proc_h1_en">Process</h1>
-  <div class="timeline">
-    <div class="titem">
-      <h3 data-i18n="t1_cs">Krok 1 — Konzultace</h3>
-      <h3 class="hidden" data-i18n="t1_en">Step 1 — Consultation</h3>
-      <p data-i18n="t1p_cs">Poznáme prostor a vaše priority. Doporučím vhodné směry a orientační rozpočet.</p>
-      <p class="hidden" data-i18n="t1p_en">We explore your space and priorities. I suggest the right direction and an indicative budget.</p>
+  <main class="section container">
+    <h1 class="script" data-i18n="proc_h1_cs">Jak pracujeme</h1>
+    <h1 class="script hidden" data-i18n="proc_h1_en">Process</h1>
+    <div class="timeline">
+      <div class="titem">
+        <h3 data-i18n="t1_cs">Konzultace</h3>
+        <h3 class="hidden" data-i18n="t1_en">Consultation</h3>
+        <p data-i18n="t1p_cs">Poznáme prostor i očekávání, navrhneme směr a rámec rozpočtu.</p>
+        <p class="hidden" data-i18n="t1p_en">We explore the space and expectations, define a direction and a budget frame.</p>
+      </div>
+      <div class="titem">
+        <h3 data-i18n="t2_cs">Návrh</h3>
+        <h3 class="hidden" data-i18n="t2_en">Design</h3>
+        <p data-i18n="t2p_cs">Výběr látek a technologií, test průsvitnosti, harmonogram.</p>
+        <p class="hidden" data-i18n="t2p_en">Choosing fabrics and systems, translucency tests, a schedule.</p>
+      </div>
+      <div class="titem">
+        <h3 data-i18n="t3_cs">Realizace</h3>
+        <h3 class="hidden" data-i18n="t3_en">Installation</h3>
+        <p data-i18n="t3p_cs">Výroba na míru, precizní montáž, čisté předání.</p>
+        <p class="hidden" data-i18n="t3p_en">Made to measure, precise installation, a clean handover.</p>
+      </div>
     </div>
-    <div class="titem">
-      <h3 data-i18n="t2_cs">Krok 2 — Návrh</h3>
-      <h3 class="hidden" data-i18n="t2_en">Step 2 — Design</h3>
-      <p data-i18n="t2p_cs">Společný výběr látek a technologií. Vzorníky, fotky a test průsvitnosti na místě.</p>
-      <p class="hidden" data-i18n="t2p_en">We select fabrics and systems together. Swatches, photos and translucency tests on site.</p>
-    </div>
-    <div class="titem">
-      <h3 data-i18n="t3_cs">Krok 3 — Realizace</h3>
-      <h3 class="hidden" data-i18n="t3_en">Step 3 — Installation</h3>
-      <p data-i18n="t3p_cs">Výroba na míru, precizní montáž a čisté dokončení. Předání v klidu.</p>
-      <p class="hidden" data-i18n="t3p_en">Made to measure, precise installation and a clean finish. A calm handover.</p>
-    </div>
-  </div>
-</main>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">

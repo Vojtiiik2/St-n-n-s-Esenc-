@@ -1,29 +1,15 @@
-
 <!doctype html>
 <html lang="cs">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title data-i18n="title">Jana Segelberg – Stínění s esencí</title>
-  <meta name="description" content="Návrh a realizace vnitřního stínění: záclony, závěsy, rolety a římské rolety s jemným akcentem aromaterapie. Přirozený, ženský a profesionální přístup.">
+  <meta name="description" content="Vnitřní stínění a esence: záclony, závěsy, rolety a jemné vůně pro klidný domov.">
   <meta property="og:title" content="Jana Segelberg – Stínění s esencí">
-  <meta property="og:description" content="Proměňuji okna v příběhy. Záclony, závěsy a rolety, které krásně vypadají a skvěle fungují.">
+  <meta property="og:description" content="Proměňuji okna v příběhy. Esence a textilie, které tvoří atmosféru.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/og-hero.jpg">
   <meta name="theme-color" content="#d8c8a8">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Jana Segelberg – Stínění s esencí",
-    "image": "assets/images/og-hero.jpg",
-    "telephone": "+420724379309",
-    "email": "hello@janasegelberg.com",
-    "url": "https://example.com",
-    "areaServed": "Czech Republic",
-    "sameAs": []
-  }
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -38,16 +24,19 @@
         <span class="brand-line1 script hidden" data-i18n="brand_en">Shade &amp; Scent by Jana</span>
         <span class="brand-line2 hidden" data-i18n="tagline_en">Curtains, Blinds &amp; Aroma</span>
       </a>
-      <nav class="nav" aria-label="Main">
-        <a href="index.html" data-i18n="nav_home_cs">Domů</a>
-        <a href="about.html" data-i18n="nav_about_cs">O mně</a>
-        <a href="process.html" data-i18n="nav_process_cs">Jak to probíhá</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="mainnav" aria-label="Menu">☰</button>
+      <nav id="mainnav" class="nav" aria-label="Main">
         <a href="gallery.html" data-i18n="nav_gallery_cs">Galerie</a>
+        <a href="pricing.html" data-i18n="nav_pricing_cs">Kolik zaplatíte</a>
+        <a href="about.html" data-i18n="nav_about_cs">O&nbsp;nás</a>
+        <a href="process.html" data-i18n="nav_process_cs">Jak pracujeme</a>
+        <a href="essences.html" data-i18n="nav_essences_cs">Esence</a>
         <a href="contact.html" data-i18n="nav_contact_cs">Kontakt</a>
-        <a href="index.html" class="hidden" data-i18n="nav_home_en">Home</a>
+        <a href="gallery.html" class="hidden" data-i18n="nav_gallery_en">Gallery</a>
+        <a href="pricing.html" class="hidden" data-i18n="nav_pricing_en">Pricing</a>
         <a href="about.html" class="hidden" data-i18n="nav_about_en">About</a>
         <a href="process.html" class="hidden" data-i18n="nav_process_en">Process</a>
-        <a href="gallery.html" class="hidden" data-i18n="nav_gallery_en">Gallery</a>
+        <a href="essences.html" class="hidden" data-i18n="nav_essences_en">Essences</a>
         <a href="contact.html" class="hidden" data-i18n="nav_contact_en">Contact</a>
       </nav>
       <div class="lang-switch">
@@ -57,89 +46,19 @@
     </div>
   </header>
 
-<main>
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content container">
-      <h1 class="script" data-i18n="hero_h1_cs">Kde se světlo setká s emocemi</h1>
-      <h1 class="script hidden" data-i18n="hero_h1_en">Where Light and Feeling Meet</h1>
-      <p data-i18n="hero_p_cs">Proměňuji okna v příběhy. Záclony, závěsy a rolety, které krásně vypadají a skvěle fungují – s důrazem na klid, detail a přirozenou eleganci.</p>
-      <p class="hidden" data-i18n="hero_p_en">I turn windows into stories. Curtains, drapes and blinds that look beautiful and work flawlessly – with calm, detail and natural elegance.</p>
-      <a href="contact.html" class="btn" data-i18n="cta_cs">Chci nezávaznou konzultaci</a>
-      <a href="contact.html" class="btn hidden" data-i18n="cta_en">Book a free consultation</a>
-    </div>
-  </section>
-
-  <section class="section container">
-    <h2 data-i18n="gal_title_cs">Galerie</h2>
-    <h2 class="hidden" data-i18n="gal_title_en">Gallery</h2>
-    <p class="muted" data-i18n="gal_p_cs">Každý interiér je jiný. Najděte materiál, texturu a míru stínění, která se dotýká právě vašeho prostoru.</p>
-    <p class="muted hidden" data-i18n="gal_p_en">Every interior is different. Find the fabric, texture and level of shading that truly suits your space.</p>
-    <div class="gallery-grid">
-      <a class="card lightboxable" href="assets/images/gal-1.jpg"><img src="assets/images/gal-1.jpg" alt="Interiér s jemným závěsem"></a>
-      <a class="card lightboxable" href="assets/images/gal-2.jpg"><img src="assets/images/gal-2.jpg" alt="Textury a látky"></a>
-      <a class="card lightboxable" href="assets/images/gal-3.jpg"><img src="assets/images/gal-3.jpg" alt="Světlo a stín"></a>
-    </div>
-    <div class="center mt">
-      <a href="gallery.html" class="link" data-i18n="open_gal_cs">Otevřít celou galerii</a>
-      <a href="gallery.html" class="link hidden" data-i18n="open_gal_en">Open full gallery</a>
-    </div>
-  </section>
-
-  <section class="section container">
-    <h2 data-i18n="about_title_cs">O mně</h2>
-    <h2 class="hidden" data-i18n="about_title_en">About</h2>
-    <div class="features">
-      <div class="feature">
-        <h3 data-i18n="feat1_cs">Dvacet let s látkou</h3>
-        <h3 class="hidden" data-i18n="feat1_en">Two Decades with Fabrics</h3>
-        <p data-i18n="feat1p_cs">Spojuji estetiku s funkčností – pro domov, který se nejen líbí, ale dobře se v něm žije.</p>
-        <p class="hidden" data-i18n="feat1p_en">A blend of aesthetics and function – for a home you love to live in.</p>
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <h1 class="script" data-i18n="hero_h1_cs">Kde se světlo setká s emocemi</h1>
+        <h1 class="script hidden" data-i18n="hero_h1_en">Where Light and Feeling Meet</h1>
+        <p data-i18n="hero_p_cs">Záclony, závěsy, rolety a jemné esence – pro klid, detail a přirozenou eleganci doma.</p>
+        <p class="hidden" data-i18n="hero_p_en">Curtains, drapes, blinds and gentle essences – for calm, detail and natural elegance at home.</p>
+        <a href="contact.html" class="btn" data-i18n="cta_cs">Nezávazná konzultace</a>
+        <a href="contact.html" class="btn hidden" data-i18n="cta_en">Free Consultation</a>
       </div>
-      <div class="feature">
-        <h3 data-i18n="feat2_cs">Respekt ke konceptu</h3>
-        <h3 class="hidden" data-i18n="feat2_en">Respect for the Concept</h3>
-        <p data-i18n="feat2p_cs">Navazuji na architekturu i váš rytmus dne. Detaily rozhodují.</p>
-        <p class="hidden" data-i18n="feat2p_en">Aligned with architecture and your daily rhythm. Details matter.</p>
-      </div>
-      <div class="feature">
-        <h3 data-i18n="feat3_cs">Tichý podpis vůně</h3>
-        <h3 class="hidden" data-i18n="feat3_en">A Quiet Scent Signature</h3>
-        <p data-i18n="feat3p_cs">Jemná esence, která podtrhne atmosféru – nic navíc, jen přirozené.</p>
-        <p class="hidden" data-i18n="feat3p_en">A gentle scent to elevate the mood – nothing extra, just natural.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section container">
-    <h2 data-i18n="proc_title_cs">Jak to probíhá</h2>
-    <h2 class="hidden" data-i18n="proc_title_en">How It Works</h2>
-    <ol class="process">
-      <li>
-        <h4 data-i18n="step1_cs">1) Úvodní konzultace</h4>
-        <h4 class="hidden" data-i18n="step1_en">1) Initial Consultation</h4>
-        <p data-i18n="step1p_cs">Krátký rozhovor, vaše přání, měření oken, základní směr.</p>
-        <p class="hidden" data-i18n="step1p_en">A brief call, your needs, window measurements and a clear direction.</p>
-      </li>
-      <li>
-        <h4 data-i18n="step2_cs">2) Návrh a výběr</h4>
-        <h4 class="hidden" data-i18n="step2_en">2) Design & Selection</h4>
-        <p data-i18n="step2p_cs">Společně volíme látky a technologie. Přivezu vzorníky a ukázky.</p>
-        <p class="hidden" data-i18n="step2p_en">We choose fabrics and systems together. I bring swatches and samples.</p>
-      </li>
-      <li>
-        <h4 data-i18n="step3_cs">3) Výroba a montáž</h4>
-        <h4 class="hidden" data-i18n="step3_en">3) Make & Install</h4>
-        <p data-i18n="step3p_cs">Precizní výroba, montáž bez stresu a čisté předání.</p>
-        <p class="hidden" data-i18n="step3p_en">Careful production, a seamless installation and a clean handover.</p>
-      </li>
-    </ol>
-    <div class="center mt">
-      <a class="btn ghost" href="process.html" data-i18n="more_proc_cs">Více o postupu</a>
-      <a class="btn ghost hidden" href="process.html" data-i18n="more_proc_en">Learn the process</a>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
