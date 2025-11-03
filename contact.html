@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="title">Jana Segelberg – Stínění s esencí</title>
+  <meta name="description" content="Vnitřní stínění a esence: záclony, závěsy, rolety a jemné vůně pro klidný domov.">
+  <meta property="og:title" content="Jana Segelberg – Stínění s esencí">
+  <meta property="og:description" content="Proměňuji okna v příběhy. Esence a textilie, které tvoří atmosféru.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/og-hero.jpg">
+  <meta name="theme-color" content="#d8c8a8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Brand">
+        <span class="brand-line1 script" data-i18n="brand_cs">Jana Segelberg</span>
+        <span class="brand-line2" data-i18n="tagline_cs">Stínění s esencí</span>
+        <span class="brand-line1 script hidden" data-i18n="brand_en">Shade &amp; Scent by Jana</span>
+        <span class="brand-line2 hidden" data-i18n="tagline_en">Curtains, Blinds &amp; Aroma</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="mainnav" aria-label="Menu">☰</button>
+      <nav id="mainnav" class="nav" aria-label="Main">
+        <a href="gallery.html" data-i18n="nav_gallery_cs">Galerie</a>
+        <a href="pricing.html" data-i18n="nav_pricing_cs">Kolik zaplatíte</a>
+        <a href="about.html" data-i18n="nav_about_cs">O&nbsp;nás</a>
+        <a href="process.html" data-i18n="nav_process_cs">Jak pracujeme</a>
+        <a href="essences.html" data-i18n="nav_essences_cs">Esence</a>
+        <a href="contact.html" data-i18n="nav_contact_cs">Kontakt</a>
+        <a href="gallery.html" class="hidden" data-i18n="nav_gallery_en">Gallery</a>
+        <a href="pricing.html" class="hidden" data-i18n="nav_pricing_en">Pricing</a>
+        <a href="about.html" class="hidden" data-i18n="nav_about_en">About</a>
+        <a href="process.html" class="hidden" data-i18n="nav_process_en">Process</a>
+        <a href="essences.html" class="hidden" data-i18n="nav_essences_en">Essences</a>
+        <a href="contact.html" class="hidden" data-i18n="nav_contact_en">Contact</a>
+      </nav>
+      <div class="lang-switch">
+        <button id="btn-cs" aria-label="Česky">CZ</button>
+        <button id="btn-en" aria-label="English">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section container">
+    <h1 class="script" data-i18n="contact_h1_cs">Kontakt</h1>
+    <h1 class="script hidden" data-i18n="contact_h1_en">Contact</h1>
+    <div class="contact-grid">
+      <div>
+        <p><strong>E-mail</strong><br><a href="mailto:hello@janasegelberg.com">hello@janasegelberg.com</a></p>
+        <p><strong>Telefon</strong><br><a href="tel:+420724379309">+420&nbsp;724&nbsp;379&nbsp;309</a></p>
+      </div>
+      <form id="contact-form" class="contact-form" action="https://script.google.com/macros/s/DEPLOYMENT_ID/exec" method="POST">
+        <input type="hidden" name="lang" id="langField" value="cs">
+        <label><span data-i18n="form_name_cs">Jméno</span><span class="hidden" data-i18n="form_name_en">Name</span><input type="text" name="name" required></label>
+        <label><span data-i18n="form_email_cs">E-mail</span><span class="hidden" data-i18n="form_email_en">E-mail</span><input type="email" name="email" required></label>
+        <label><span data-i18n="form_msg_cs">Zpráva</span><span class="hidden" data-i18n="form_msg_en">Message</span><textarea name="message" rows="5" required></textarea></label>
+        <button class="btn" type="submit" data-i18n="form_send_cs">Odeslat</button>
+        <button class="btn hidden" type="submit" data-i18n="form_send_en">Send</button>
+        <p id="form-status" class="muted" aria-live="polite"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand script" data-i18n="brand_cs">Jana Segelberg</div>
+        <div class="footer-tag" data-i18n="tagline_cs">Stínění s esencí</div>
+        <div class="footer-brand script hidden" data-i18n="brand_en">Shade &amp; Scent by Jana</div>
+        <div class="footer-tag hidden" data-i18n="tagline_en">Curtains, Blinds &amp; Aroma</div>
+      </div>
+      <div>
+        <p><strong data-i18n="contact_cs">Kontakt</strong><strong class="hidden" data-i18n="contact_en">Contact</strong></p>
+        <p><a href="mailto:hello@janasegelberg.com">hello@janasegelberg.com</a></p>
+        <p><a href="tel:+420724379309">+420&nbsp;724&nbsp;379&nbsp;309</a></p>
+      </div>
+      <div class="footer-bullets">
+        <div class="bullet">
+          <h4 data-i18n="usp1_cs">Osobní přístup</h4>
+          <h4 class="hidden" data-i18n="usp1_en">Personalized Service</h4>
+          <p data-i18n="usp1txt_cs">Řešení na míru vašemu stylu i prostoru.</p>
+          <p class="hidden" data-i18n="usp1txt_en">Tailored to your taste and space.</p>
+        </div>
+        <div class="bullet">
+          <h4 data-i18n="usp2_cs">Prémiová kvalita</h4>
+          <h4 class="hidden" data-i18n="usp2_en">Premium Quality</h4>
+          <p data-i18n="usp2txt_cs">Pečlivé zpracování každého detailu.</p>
+          <p class="hidden" data-i18n="usp2txt_en">Attention to every detail.</p>
+        </div>
+        <div class="bullet">
+          <h4 data-i18n="usp3_cs">Ověřená odbornost</h4>
+          <h4 class="hidden" data-i18n="usp3_en">Trusted Expertise</h4>
+          <p data-i18n="usp3txt_cs">Dvacet let zkušeností ve stínicí technice.</p>
+          <p class="hidden" data-i18n="usp3txt_en">Two decades in interior shading.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright">
+      <p>&copy; 2025 <span data-i18n="brand_short_cs">Jana Segelberg</span><span class="hidden" data-i18n="brand_short_en">Shade &amp; Scent by Jana</span>. <span data-i18n="rights_cs">Všechna práva vyhrazena.</span><span class="hidden" data-i18n="rights_en">All rights reserved.</span></p>
+    </div>
+  </footer>
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lb-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" alt="Preview">
+  </div>
+  <script src="assets/script.js"></script>
+</body>
+</html>
