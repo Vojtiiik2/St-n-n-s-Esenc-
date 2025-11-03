@@ -1,1 +1,0 @@
-# St-n-n-s-Esenc-
