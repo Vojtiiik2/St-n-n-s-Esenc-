@@ -2,187 +2,420 @@
 <!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="title">Jana Segelberg – Stínění s esencí</title>
-  <meta name="description" content="Návrh a realizace vnitřního stínění: záclony, závěsy, rolety a římské rolety s jemným akcentem aromaterapie. Přirozený, ženský a profesionální přístup.">
-  <meta property="og:title" content="Jana Segelberg – Stínění s esencí">
-  <meta property="og:description" content="Proměňuji okna v příběhy. Záclony, závěsy a rolety, které krásně vypadají a skvěle fungují.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/images/og-hero.jpg">
-  <meta name="theme-color" content="#d8c8a8">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Jana Segelberg – Stínění s esencí",
-    "image": "assets/images/og-hero.jpg",
-    "telephone": "+420724379309",
-    "email": "hello@janasegelberg.com",
-    "url": "https://example.com",
-    "areaServed": "Czech Republic",
-    "sameAs": []
-  }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jana Segelberg – Stínění s esencí</title>
+  <meta name="description" content="Kde se světlo setká s emocí. Záclony, závěsy, rolety a jemné esence.">
+  <meta name="theme-color" content="#f1ece7" />
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <!-- Tailwind via CDN (no build needed) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --bg:#FAF8F5; --bg2:#F1ECE7; --text:#2a2a2a; --muted:#6f6f6f; --sand:#d8c8a8; --line:#eae7e2; --white:#fff;
+    }
+    html,body{background:var(--bg); color:var(--text); font-family:Lato, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif}
+    .script{font-family:"Dancing Script", cursive}
+    .glass{backdrop-filter:saturate(140%) blur(6px)}
+    /* Light reveal overlay */
+    .reveal::before{
+      content:""; position:fixed; inset:0; pointer-events:none;
+      background:radial-gradient(1200px 600px at 0% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.0) 60%),
+                 linear-gradient(to bottom, rgba(255,255,255,0.35), rgba(255,255,255,0.0) 40%);
+      opacity:0; animation:reveal 1200ms ease forwards;
+    }
+    @keyframes reveal{ from{opacity:1} to{opacity:0} }
+
+    /* Scroll hint (minimalistická šipka) */
+    .scroll-hint{
+      width:22px;height:22px; border-left:1.5px solid rgba(255,255,255,.9); border-bottom:1.5px solid rgba(255,255,255,.9);
+      transform:rotate(-45deg); opacity:.0; animation:hint 2.6s ease-in-out 1s infinite;
+    }
+    @keyframes hint{
+      0%{transform:translateY(0) rotate(-45deg); opacity:.0}
+      20%{opacity:.8}
+      50%{transform:translateY(6px) rotate(-45deg); opacity:.9}
+      100%{transform:translateY(0) rotate(-45deg); opacity:.0}
+    }
+
+    /* Cards hover */
+    .card img{transition:transform .6s ease, filter .4s ease}
+    .card:hover img{transform:scale(1.03); filter:brightness(1.05)}
+    .soft-shadow{box-shadow:0 14px 38px rgba(0,0,0,.09), 0 6px 18px rgba(0,0,0,.05)}
+    .section-swap:nth-of-type(even){background:var(--bg2)}
+    .divider{height:1px; background:linear-gradient(to right, transparent, var(--line), transparent)}
+
+    /* Lightbox (very small, vanilla) */
+    .lb{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.86); z-index:50; padding:20px}
+    .lb.show{display:flex}
+    .lb img{max-width:92vw; max-height:90vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5)}
+  </style>
 </head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="Brand">
-        <span class="brand-line1 script" data-i18n="brand_cs">Jana Segelberg</span>
-        <span class="brand-line2" data-i18n="tagline_cs">Stínění s esencí</span>
-        <span class="brand-line1 script hidden" data-i18n="brand_en">Shade &amp; Scent by Jana</span>
-        <span class="brand-line2 hidden" data-i18n="tagline_en">Curtains, Blinds &amp; Aroma</span>
-      </a>
-      <nav class="nav" aria-label="Main">
-        <a href="index.html" data-i18n="nav_home_cs">Domů</a>
-        <a href="about.html" data-i18n="nav_about_cs">O mně</a>
-        <a href="process.html" data-i18n="nav_process_cs">Jak to probíhá</a>
-        <a href="gallery.html" data-i18n="nav_gallery_cs">Galerie</a>
-        <a href="contact.html" data-i18n="nav_contact_cs">Kontakt</a>
-        <a href="index.html" class="hidden" data-i18n="nav_home_en">Home</a>
-        <a href="about.html" class="hidden" data-i18n="nav_about_en">About</a>
-        <a href="process.html" class="hidden" data-i18n="nav_process_en">Process</a>
-        <a href="gallery.html" class="hidden" data-i18n="nav_gallery_en">Gallery</a>
-        <a href="contact.html" class="hidden" data-i18n="nav_contact_en">Contact</a>
-      </nav>
-      <div class="lang-switch">
-        <button id="btn-cs" aria-label="Česky">CZ</button>
-        <button id="btn-en" aria-label="English">EN</button>
-      </div>
-    </div>
-  </header>
+<body class="reveal">
+  <!-- Root -->
+  <div id="root"></div>
 
-<main>
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content container">
-      <h1 class="script" data-i18n="hero_h1_cs">Kde se světlo setká s emocemi</h1>
-      <h1 class="script hidden" data-i18n="hero_h1_en">Where Light and Feeling Meet</h1>
-      <p data-i18n="hero_p_cs">Proměňuji okna v příběhy. Záclony, závěsy a rolety, které krásně vypadají a skvěle fungují – s důrazem na klid, detail a přirozenou eleganci.</p>
-      <p class="hidden" data-i18n="hero_p_en">I turn windows into stories. Curtains, drapes and blinds that look beautiful and work flawlessly – with calm, detail and natural elegance.</p>
-      <a href="contact.html" class="btn" data-i18n="cta_cs">Chci nezávaznou konzultaci</a>
-      <a href="contact.html" class="btn hidden" data-i18n="cta_en">Book a free consultation</a>
-    </div>
-  </section>
+  <!-- React & Babel UMD (no build) -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <section class="section container">
-    <h2 data-i18n="gal_title_cs">Galerie</h2>
-    <h2 class="hidden" data-i18n="gal_title_en">Gallery</h2>
-    <p class="muted" data-i18n="gal_p_cs">Každý interiér je jiný. Najděte materiál, texturu a míru stínění, která se dotýká právě vašeho prostoru.</p>
-    <p class="muted hidden" data-i18n="gal_p_en">Every interior is different. Find the fabric, texture and level of shading that truly suits your space.</p>
-    <div class="gallery-grid">
-      <a class="card lightboxable" href="assets/images/gal-1.jpg"><img src="assets/images/gal-1.jpg" alt="Interiér s jemným závěsem"></a>
-      <a class="card lightboxable" href="assets/images/gal-2.jpg"><img src="assets/images/gal-2.jpg" alt="Textury a látky"></a>
-      <a class="card lightboxable" href="assets/images/gal-3.jpg"><img src="assets/images/gal-3.jpg" alt="Světlo a stín"></a>
-    </div>
-    <div class="center mt">
-      <a href="gallery.html" class="link" data-i18n="open_gal_cs">Otevřít celou galerii</a>
-      <a href="gallery.html" class="link hidden" data-i18n="open_gal_en">Open full gallery</a>
-    </div>
-  </section>
+  <script type="text/babel">
+  const { useState, useEffect, useMemo } = React;
 
-  <section class="section container">
-    <h2 data-i18n="about_title_cs">O mně</h2>
-    <h2 class="hidden" data-i18n="about_title_en">About</h2>
-    <div class="features">
-      <div class="feature">
-        <h3 data-i18n="feat1_cs">Dvacet let s látkou</h3>
-        <h3 class="hidden" data-i18n="feat1_en">Two Decades with Fabrics</h3>
-        <p data-i18n="feat1p_cs">Spojuji estetiku s funkčností – pro domov, který se nejen líbí, ale dobře se v něm žije.</p>
-        <p class="hidden" data-i18n="feat1p_en">A blend of aesthetics and function – for a home you love to live in.</p>
-      </div>
-      <div class="feature">
-        <h3 data-i18n="feat2_cs">Respekt ke konceptu</h3>
-        <h3 class="hidden" data-i18n="feat2_en">Respect for the Concept</h3>
-        <p data-i18n="feat2p_cs">Navazuji na architekturu i váš rytmus dne. Detaily rozhodují.</p>
-        <p class="hidden" data-i18n="feat2p_en">Aligned with architecture and your daily rhythm. Details matter.</p>
-      </div>
-      <div class="feature">
-        <h3 data-i18n="feat3_cs">Tichý podpis vůně</h3>
-        <h3 class="hidden" data-i18n="feat3_en">A Quiet Scent Signature</h3>
-        <p data-i18n="feat3p_cs">Jemná esence, která podtrhne atmosféru – nic navíc, jen přirozené.</p>
-        <p class="hidden" data-i18n="feat3p_en">A gentle scent to elevate the mood – nothing extra, just natural.</p>
-      </div>
-    </div>
-  </section>
+  // ----------- i18n -----------
+  const strings = {
+    cs: {
+      brand1: "Jana Segelberg",
+      brand2: "Stínění s esencí",
+      heroH1: "Kde se světlo setká s emocí",
+      heroSub: "Záclony · Závěsy · Rolety · Esence",
+      cta: "Nezávazná konzultace",
+      nav: ["Galerie","Kolik zaplatíte","O nás","Jak pracujeme","Esence","Kontakt"],
+      feel: ["Prostor","Textura","Esence","Harmonie"],
+      feelTxt: [
+        "Světlo, které dýchá – a prostor, který se vám přizpůsobí.",
+        "Dotek látky v detailu. Kvalita, která vydrží roky.",
+        "Jemná vůně jako závěrečná nota atmosféry.",
+        "Plynulost, klid, přirozené linie – bez kompromisu."
+      ],
+      processH: "Jak pracujeme",
+      steps: ["Konzultace","Návrh","Realizace"],
+      stepsTxt: [
+        "Poznáme váš prostor a očekávání, nastavíme rámec.",
+        "Zvolíme látky a technologii, připravíme harmonogram.",
+        "Precizní výroba, čistá montáž a hladké předání."
+      ],
+      essenceH: "Esence",
+      essences: [
+        { name:"Vanilka", note:"Hřejivá, uklidňující – ložnice, čtecí kout."},
+        { name:"Peppermint", note:"Čistý, svěží – pracovna, kuchyně."},
+        { name:"Citrus", note:"Lehký, radostný – obývák, koupelna."},
+        { name:"Levandule", note:"Uvolňuje – ložnice, wellness."},
+        { name:"Rozmarýn", note:"Čistí a posiluje – vstup, kuchyně."},
+        { name:"Eukalyptus", note:"Osvěžuje dech – koupelna."},
+        { name:"Sezónní", note:"Měsíční speciál – mění se automaticky."}
+      ],
+      priceH: "Kolik zaplatíte",
+      priceP: "Ceny jsou orientační; závisí na materiálu, rozměrech a typu systému. Rámec sdělím na první schůzce.",
+      aboutH: "O nás",
+      aboutP: "Navrhuji stínění, které ctí architekturu i rytmus dne. Látka, světlo a jemná vůně tvoří domov.",
+      contactH: "Kontakt",
+      name:"Jméno", email:"E-mail", message:"Zpráva", send:"Odeslat",
+      footer1:"Osobní přístup", footer1t:"Řešení na míru vašemu stylu.",
+      footer2:"Prémiová kvalita", footer2t:"Pečlivé zpracování detailů.",
+      footer3:"Ověřená odbornost", footer3t:"Dvacet let zkušeností.",
+      rights:"Všechna práva vyhrazena."
+    },
+    en: {
+      brand1: "Jana Segelberg",
+      brand2: "Shade & Scent",
+      heroH1: "Where light meets emotion",
+      heroSub: "Curtains · Drapes · Blinds · Scents",
+      cta: "Free Consultation",
+      nav: ["Gallery","Pricing","About","Process","Essences","Contact"],
+      feel: ["Space","Texture","Essence","Harmony"],
+      feelTxt: [
+        "Breathing light — a space that adapts to you.",
+        "The touch of fabric in detail. Quality that lasts.",
+        "A gentle scent as the final note of atmosphere.",
+        "Flow, calm and natural lines — no compromise."
+      ],
+      processH: "Process",
+      steps: ["Consultation","Design","Installation"],
+      stepsTxt: [
+        "We discover your space and expectations.",
+        "We select fabrics and systems, set a schedule.",
+        "Made to measure, precise installation, clean handover."
+      ],
+      essenceH: "Essences",
+      essences: [
+        { name:"Vanilla", note:"Warm, soothing — bedroom, reading nook."},
+        { name:"Peppermint", note:"Clean, fresh — home office, kitchen."},
+        { name:"Citrus", note:"Light, uplifting — living room, bathroom."},
+        { name:"Lavender", note:"Relaxing — bedroom, wellness."},
+        { name:"Rosemary", note:"Cleansing, energizing — entry, kitchen."},
+        { name:"Eucalyptus", note:"Refreshing — bathroom."},
+        { name:"Seasonal", note:"Monthly special — changes automatically."}
+      ],
+      priceH: "Pricing",
+      priceP: "Indicative only; depends on materials, sizes and systems. You'll get a budget frame at our first meeting.",
+      aboutH: "About",
+      aboutP: "We design shading that respects architecture and your daily rhythm. Fabric, light and a gentle scent create home.",
+      contactH: "Contact",
+      name:"Name", email:"E-mail", message:"Message", send:"Send",
+      footer1:"Personalized Service", footer1t:"Tailored to your taste.",
+      footer2:"Premium Quality", footer2t:"Attention to detail.",
+      footer3:"Trusted Expertise", footer3t:"Two decades in shading.",
+      rights:"All rights reserved."
+    }
+  };
 
-  <section class="section container">
-    <h2 data-i18n="proc_title_cs">Jak to probíhá</h2>
-    <h2 class="hidden" data-i18n="proc_title_en">How It Works</h2>
-    <ol class="process">
-      <li>
-        <h4 data-i18n="step1_cs">1) Úvodní konzultace</h4>
-        <h4 class="hidden" data-i18n="step1_en">1) Initial Consultation</h4>
-        <p data-i18n="step1p_cs">Krátký rozhovor, vaše přání, měření oken, základní směr.</p>
-        <p class="hidden" data-i18n="step1p_en">A brief call, your needs, window measurements and a clear direction.</p>
-      </li>
-      <li>
-        <h4 data-i18n="step2_cs">2) Návrh a výběr</h4>
-        <h4 class="hidden" data-i18n="step2_en">2) Design & Selection</h4>
-        <p data-i18n="step2p_cs">Společně volíme látky a technologie. Přivezu vzorníky a ukázky.</p>
-        <p class="hidden" data-i18n="step2p_en">We choose fabrics and systems together. I bring swatches and samples.</p>
-      </li>
-      <li>
-        <h4 data-i18n="step3_cs">3) Výroba a montáž</h4>
-        <h4 class="hidden" data-i18n="step3_en">3) Make & Install</h4>
-        <p data-i18n="step3p_cs">Precizní výroba, montáž bez stresu a čisté předání.</p>
-        <p class="hidden" data-i18n="step3p_en">Careful production, a seamless installation and a clean handover.</p>
-      </li>
-    </ol>
-    <div class="center mt">
-      <a class="btn ghost" href="process.html" data-i18n="more_proc_cs">Více o postupu</a>
-      <a class="btn ghost hidden" href="process.html" data-i18n="more_proc_en">Learn the process</a>
-    </div>
-  </section>
-</main>
+  const HERO_IMG = "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1800&auto=format&fit=crop";
+  const FEEL_IMG = [
+    "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
+  ];
+  const GALLERY = [
+    "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1542326237-94b1c5a538d6?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1521783988139-893ce3cdb4e8?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1493666438817-866a91353ca9?q=80&w=1600&auto=format&fit=crop"
+  ];
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="footer-brand script" data-i18n="brand_cs">Jana Segelberg</div>
-        <div class="footer-tag" data-i18n="tagline_cs">Stínění s esencí</div>
-        <div class="footer-brand script hidden" data-i18n="brand_en">Shade &amp; Scent by Jana</div>
-        <div class="footer-tag hidden" data-i18n="tagline_en">Curtains, Blinds &amp; Aroma</div>
-      </div>
-      <div>
-        <p><strong data-i18n="contact_cs">Kontakt</strong><strong class="hidden" data-i18n="contact_en">Contact</strong></p>
-        <p><a href="mailto:hello@janasegelberg.com">hello@janasegelberg.com</a></p>
-        <p><a href="tel:+420724379309">+420&nbsp;724&nbsp;379&nbsp;309</a></p>
-      </div>
-      <div class="footer-bullets">
-        <div class="bullet">
-          <h4 data-i18n="usp1_cs">Osobní přístup</h4>
-          <h4 class="hidden" data-i18n="usp1_en">Personalized Service</h4>
-          <p data-i18n="usp1txt_cs">Řešení na míru vašemu stylu i prostoru.</p>
-          <p class="hidden" data-i18n="usp1txt_en">Tailored to your taste and space.</p>
+  function useLang(){
+    const [lang,setLang] = useState(()=>localStorage.getItem("lang")||"cs");
+    useEffect(()=>{ localStorage.setItem("lang",lang); document.documentElement.lang = lang; },[lang]);
+    return { lang, setLang, t:strings[lang] };
+  }
+
+  const Header = ({t, lang, setLang}) => (
+    <header className="fixed top-0 left-0 right-0 z-30 border-b border-[var(--line)]/70 bg-white/70 glass">
+      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="leading-4">
+          <div className="script text-2xl -mb-0.5">{t.brand1}</div>
+          <div className="text-xs tracking-wide text-[var(--muted)]">{t.brand2}</div>
         </div>
-        <div class="bullet">
-          <h4 data-i18n="usp2_cs">Prémiová kvalita</h4>
-          <h4 class="hidden" data-i18n="usp2_en">Premium Quality</h4>
-          <p data-i18n="usp2txt_cs">Pečlivé zpracování každého detailu.</p>
-          <p class="hidden" data-i18n="usp2txt_en">Attention to every detail.</p>
-        </div>
-        <div class="bullet">
-          <h4 data-i18n="usp3_cs">Ověřená odbornost</h4>
-          <h4 class="hidden" data-i18n="usp3_en">Trusted Expertise</h4>
-          <p data-i18n="usp3txt_cs">Dvacet let zkušeností ve stínicí technice.</p>
-          <p class="hidden" data-i18n="usp3txt_en">Two decades in interior shading.</p>
+        <nav className="hidden md:flex gap-6 text-sm font-semibold">
+          {t.nav.map((label, i)=>(
+            <a key={i} href={`#sec-${i}`} className="hover:text-[var(--text)]/90 text-[var(--text)]/75 relative">
+              {label}
+              <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[var(--sand)]/0 hover:bg-[var(--sand)]/80 transition"></span>
+            </a>
+          ))}
+        </nav>
+        <div className="flex gap-2">
+          <button onClick={()=>setLang("cs")}
+            className={"px-3 py-1.5 text-sm rounded-lg border "+(lang==="cs"?"border-[var(--sand)]":"border-[var(--line)]")}>CZ</button>
+          <button onClick={()=>setLang("en")}
+            className={"px-3 py-1.5 text-sm rounded-lg border "+(lang==="en"?"border-[var(--sand)]":"border-[var(--line)]")}>EN</button>
         </div>
       </div>
-    </div>
-    <div class="container copyright">
-      <p>&copy; 2025 <span data-i18n="brand_short_cs">Jana Segelberg</span><span class="hidden" data-i18n="brand_short_en">Shade &amp; Scent by Jana</span>. <span data-i18n="rights_cs">Všechna práva vyhrazena.</span><span class="hidden" data-i18n="rights_en">All rights reserved.</span></p>
-    </div>
-  </footer>
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <button class="lb-close" aria-label="Close">&times;</button>
-    <img id="lightbox-img" alt="Preview">
-  </div>
-  <script src="assets/script.js"></script>
+    </header>
+  );
+
+  const Hero = ({t}) => {
+    // scroll to first section
+    const goNext = () => document.querySelector("#sec-0")?.scrollIntoView({behavior:"smooth", block:"start"});
+    return (
+      <section className="relative min-h-[92vh] flex items-center" style={{
+        backgroundImage: `linear-gradient( to right, rgba(0,0,0,.20), rgba(0,0,0,.05) ),
+                          url('${HERO_IMG}')`,
+        backgroundSize:"cover", backgroundPosition:"left center"
+      }}>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/15"></div>
+        <div className="relative max-w-6xl mx-auto px-4 w-full">
+          <div className="max-w-2xl text-white drop-shadow-[0_2px_14px_rgba(0,0,0,.35)]">
+            <h1 className="script text-4xl md:text-6xl mb-3">{t.heroH1}</h1>
+            <p className="text-base md:text-lg opacity-95">{t.heroSub}</p>
+            <a href="#sec-5" className="inline-block mt-6 px-5 py-3 rounded-full bg-[var(--sand)] text-[var(--text)] font-bold border border-black/5">
+              {t.cta}
+            </a>
+          </div>
+        </div>
+        <button aria-label="Scroll down" onClick={goNext}
+          className="absolute left-1/2 -translate-x-1/2 bottom-6">
+          <span className="scroll-hint"></span>
+        </button>
+      </section>
+    );
+  };
+
+  const FeelCards = ({t}) => (
+    <section id="sec-0" className="section-swap">
+      <div className="max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <div className="grid md:grid-cols-2 gap-6">
+          {t.feel.map((title, i)=>(
+            <article key={i} className="card overflow-hidden rounded-2xl bg-white border border-[var(--line)] soft-shadow">
+              <div className="grid md:grid-cols-2 gap-0">
+                <img src={FEEL_IMG[i]} alt="" className="w-full h-full object-cover aspect-[4/3] md:aspect-auto"/>
+                <div className="p-6 md:p-8 flex flex-col justify-center">
+                  <h3 className="script text-3xl mb-2">{title}</h3>
+                  <p className="text-[var(--muted)]">{t.feelTxt[i]}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  const Gallery = ({t}) => (
+    <section id="sec-1" className="section-swap">
+      <div className="max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <h2 className="script text-4xl mb-6">{t.nav[0]}</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {GALLERY.map((src, i)=>(
+            <a key={i} href={src} className="relative group" onClick={(e)=>openLightbox(e,src)}>
+              <img src={src} alt="" className="rounded-xl soft-shadow w-full h-full object-cover aspect-[4/3]" />
+              <div className="absolute inset-0 rounded-xl bg-black/0 group-hover:bg-black/10 transition"></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  const Pricing = ({t}) => (
+    <section id="sec-2" className="section-swap">
+      <div className="max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <h2 className="script text-4xl mb-4">{t.priceH}</h2>
+        <p className="text-[var(--muted)] max-w-3xl">{t.priceP}</p>
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          {["Voile / Záclona","Závěs (blackout/dim-out)","Kolejnice / systém"].map((name,i)=>(
+            <div key={i} className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+              <div className="font-semibold mb-2">{name}</div>
+              <div className="text-sm text-[var(--muted)]">Cena na míru po zaměření • materiál, rozměr, ušití</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  const About = ({t}) => (
+    <section id="sec-3" className="section-swap">
+      <div className="max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <h2 className="script text-4xl mb-4">{t.aboutH}</h2>
+        <p className="max-w-3xl text-[var(--muted)]">{t.aboutP}</p>
+      </div>
+    </section>
+  );
+
+  const Process = ({t}) => (
+    <section id="sec-4" className="section-swap">
+      <div className="max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <h2 className="script text-4xl mb-8">{t.processH}</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {t.steps.map((s, i)=>(
+            <div key={i} className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+              <div className="script text-2xl mb-1">{s}</div>
+              <div className="text-[var(--muted)]">{t.stepsTxt[i]}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  const Essences = ({t}) => (
+    <section id="sec-4b" className="section-swap">
+      <div className="max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <h2 className="script text-4xl mb-6">{t.essenceH}</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {t.essences.map((e,i)=>(
+            <div key={i}
+              className="rounded-2xl border border-[var(--line)] p-6 soft-shadow bg-gradient-to-b from-white to-[var(--bg2)] hover:from-white hover:to-white transition">
+              <div className="flex items-baseline justify-between">
+                <h3 className="script text-3xl">{e.name}</h3>
+                <span className="w-2.5 h-2.5 rounded-full"
+                      style={{backgroundColor: i===0?"#d7bfa3": i===1?"#bedad1": i===2?"#f1d28c": i===3?"#dac6e1": i===4?"#c9d1b9": i===5?"#c6e3e8":"#e8d9c8"}} />
+              </div>
+              <p className="text-[var(--muted)] mt-2">{e.note}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  const Contact = ({t}) => (
+    <section id="sec-5" className="section-swap">
+      <div className="max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <h2 className="script text-4xl mb-6">{t.contactH}</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <p><strong>{t.name}</strong><br/>Jana Segelberg</p>
+            <p><strong>E-mail</strong><br/><a className="underline" href="mailto:hello@janasegelberg.com">hello@janasegelberg.com</a></p>
+            <p><strong>Telefon</strong><br/><a className="underline" href="tel:+420724379309">+420 724 379 309</a></p>
+            <div className="divider my-6"></div>
+            <p className="text-[var(--muted)]">
+              Po schválení vizuálu napojíme formulář na Google Sheets + automatickou odpověď (CZ/EN).
+            </p>
+          </div>
+          <form className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+            <div className="grid gap-4">
+              <label className="text-sm">{t.name}<input className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required /></label>
+              <label className="text-sm">{t.email}<input type="email" className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required /></label>
+              <label className="text-sm">{t.message}<textarea rows="5" className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required></textarea></label>
+              <button type="button" className="px-5 py-3 rounded-full bg-[var(--sand)] text-[var(--text)] font-bold border border-black/5">{t.send}</button>
+              <p className="text-[var(--muted)] text-sm">* Demo formulář – bez odesílání (připomenu napojení po schválení vzhledu).</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+
+  const Footer = ({t}) => (
+    <footer className="bg-[#222] text-[#ddd]">
+      <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
+        <div>
+          <div className="script text-2xl"> {t.brand1} </div>
+          <div className="text-sm text-[#bdbdbd]">{t.brand2}</div>
+        </div>
+        <div className="grid gap-2">
+          <div className="font-semibold">{t.footer1}</div>
+          <div className="text-sm text-[#bdbdbd]">{t.footer1t}</div>
+          <div className="font-semibold mt-3">{t.footer2}</div>
+          <div className="text-sm text-[#bdbdbd]">{t.footer2t}</div>
+          <div className="font-semibold mt-3">{t.footer3}</div>
+          <div className="text-sm text-[#bdbdbd]">{t.footer3t}</div>
+        </div>
+        <div className="text-sm text-[#bdbdbd]">
+          <p>&copy; 2025 {t.brand1}. {t.rights}</p>
+        </div>
+      </div>
+    </footer>
+  );
+
+  // Lightbox (super simple)
+  function openLightbox(e, src){
+    e.preventDefault();
+    const el = document.querySelector("#lb"); const img = document.querySelector("#lbimg");
+    img.src = src; el.classList.add("show"); el.setAttribute("aria-hidden","false");
+  }
+  function closeLightbox(){
+    const el = document.querySelector("#lb"); const img = document.querySelector("#lbimg");
+    el.classList.remove("show"); el.setAttribute("aria-hidden","true"); img.src="";
+  }
+
+  const App = () => {
+    const {lang, setLang, t} = useLang();
+    // close on ESC for lightbox
+    useEffect(()=>{
+      const h = (ev)=>{ if(ev.key==="Escape") closeLightbox(); };
+      document.addEventListener("keydown",h); return ()=>document.removeEventListener("keydown",h);
+    },[]);
+    return (
+      <>
+        <Header t={t} lang={lang} setLang={setLang} />
+        <main className="pt-16">
+          <Hero t={t}/>
+          <FeelCards t={t}/>
+          <Gallery t={t}/>
+          <Pricing t={t}/>
+          <About t={t}/>
+          <Process t={t}/>
+          <Essences t={t}/>
+          <Contact t={t}/>
+        </main>
+        <Footer t={t}/>
+        <div id="lb" className="lb" onClick={closeLightbox} aria-hidden="true">
+          <button className="absolute top-5 right-6 text-white text-3xl" aria-label="Close" onclick="closeLightbox()">&times;</button>
+          <img id="lbimg" alt="preview"/>
+        </div>
+      </>
+    );
+  };
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
 </body>
 </html>
