@@ -381,3 +381,22 @@ function App(){
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+// ---- Lightbox ----
+function openLightbox(e, src) {
+  e.preventDefault();
+  const lb = document.getElementById("lb");
+  const img = document.getElementById("lbimg");
+  if (lb && img) {
+    img.src = src;
+    lb.style.display = "flex";
+    lb.setAttribute("aria-hidden", "false");
+  }
+}
+
+function closeLightbox() {
+  const lb = document.getElementById("lb");
+  if (lb) {
+    lb.style.display = "none";
+    lb.setAttribute("aria-hidden", "true");
+  }
+}
