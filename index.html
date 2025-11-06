@@ -13,10 +13,12 @@
 <body class="reveal">
   <div id="root"></div>
 
-  <!-- React CDN -->
+   <!-- React CDN + Babel -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel" src="./app.js"></script>
+
+  <!-- Důležité: defer zajišťuje, že se Babel načte dřív než app.js -->
+  <script type="text/babel" src="./app.js" defer></script>
 </body>
 </html>
