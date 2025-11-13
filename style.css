@@ -1,9 +1,8 @@
-/* --- FONT OBECNÝ PRO CELÝ WEB --- */
-body, nav, p, a, button, label, input, textarea, span, h1, h2, h3, h4, h5 {
-  font-family: 'Inter', sans-serif !important;
+
+body, nav, p, a, button, label, input, textarea, span {
+  font-family: 'Inter', sans-serif;
 }
 
-/* ostatní styly za tím pokračují dál... */
 
 :root {
   --sand: #e9d9c4;
