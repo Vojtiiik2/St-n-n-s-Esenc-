@@ -310,6 +310,7 @@ function Process({ t }) {
         <h2 className="script text-4xl mb-10 text-left md:text-center">{t.processH}</h2>
 
         <div className="grid md:grid-cols-3 gap-8">
+
           {/* 1. krok */}
           <div className="flex flex-col h-full">
             <img
@@ -320,10 +321,8 @@ function Process({ t }) {
             <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
               <div className="script text-3xl mb-2">{t.steps[0]}</div>
               <p className="text-[var(--muted)] flex-1">{t.stepsTxt[0]}</p>
-              </div>
             </div>
           </div>
-      
 
           {/* 2. krok */}
           <div className="flex flex-col h-full">
@@ -335,7 +334,6 @@ function Process({ t }) {
             <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
               <div className="script text-3xl mb-2">{t.steps[1]}</div>
               <p className="text-[var(--muted)] flex-1">{t.stepsTxt[1]}</p>
-              </div>
             </div>
           </div>
 
@@ -351,11 +349,13 @@ function Process({ t }) {
               <p className="text-[var(--muted)] flex-1">{t.stepsTxt[2]}</p>
             </div>
           </div>
+
         </div>
       </section>
     </>
   );
 }
+
 
 
 /* -----------------------------------------
