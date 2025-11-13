@@ -305,55 +305,65 @@ function Process({ t }) {
         small
         bg="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1800&auto=format&fit=crop"
       />
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="script text-4xl mb-8">{t.processH}</h2>
 
-        <div className="space-y-12">
+      <section className="max-w-6xl mx-auto px-4 py-16 md:py-20" data-first>
+        <h2 className="script text-4xl mb-10 text-left md:text-center">{t.processH}</h2>
 
-          {/* 1. krok – konzultace */}
-          <div className="grid md:grid-cols-2 gap-6 items-center">
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* 1. krok */}
+          <div className="flex flex-col h-full">
             <img
               src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop"
-              className="rounded-2xl soft-shadow w-full h-full object-cover"
+              className="rounded-2xl soft-shadow w-full mb-4 object-cover aspect-[4/3]"
               alt=""
             />
-            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
               <div className="script text-3xl mb-2">{t.steps[0]}</div>
-              <p className="text-[var(--muted)]">{t.stepsTxt[0]}</p>
+              <p className="text-[var(--muted)] flex-1">{t.stepsTxt[0]}</p>
+              <div className="mt-4 flex items-center gap-2 text-[var(--muted)] text-xs tracking-wide uppercase">
+                <span className="inline-block w-10 h-px bg-[var(--line)]" />
+                <span>další krok</span>
+                <span className="text-lg">→</span>
+              </div>
             </div>
           </div>
 
-          {/* 2. krok – návrh */}
-          <div className="grid md:grid-cols-2 gap-6 items-center md:flex-row-reverse">
+          {/* 2. krok */}
+          <div className="flex flex-col h-full">
             <img
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
-              className="rounded-2xl soft-shadow w-full h-full object-cover"
+              className="rounded-2xl soft-shadow w-full mb-4 object-cover aspect-[4/3]"
               alt=""
             />
-            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
               <div className="script text-3xl mb-2">{t.steps[1]}</div>
-              <p className="text-[var(--muted)]">{t.stepsTxt[1]}</p>
+              <p className="text-[var(--muted)] flex-1">{t.stepsTxt[1]}</p>
+              <div className="mt-4 flex items-center gap-2 text-[var(--muted)] text-xs tracking-wide uppercase">
+                <span className="inline-block w-10 h-px bg-[var(--line)]" />
+                <span>další krok</span>
+                <span className="text-lg">→</span>
+              </div>
             </div>
           </div>
 
-          {/* 3. krok – realizace */}
-          <div className="grid md:grid-cols-2 gap-6 items-center">
+          {/* 3. krok */}
+          <div className="flex flex-col h-full">
             <img
-              src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?q=80&w=1600&auto=format&fit=crop"
-              className="rounded-2xl soft-shadow w-full h-full object-cover"
+              src="https://images.unsplash.com/photo-1505693416388-36a5ac3be353?q=80&w=1600&auto=format&fit=crop"
+              className="rounded-2xl soft-shadow w-full mb-4 object-cover aspect-[4/3]"
               alt=""
             />
-            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
               <div className="script text-3xl mb-2">{t.steps[2]}</div>
-              <p className="text-[var(--muted)]">{t.stepsTxt[2]}</p>
+              <p className="text-[var(--muted)] flex-1">{t.stepsTxt[2]}</p>
             </div>
           </div>
-
         </div>
       </section>
     </>
   );
 }
+
 
 /* -----------------------------------------
    Pricing
