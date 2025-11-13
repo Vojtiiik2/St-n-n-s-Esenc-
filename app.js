@@ -320,13 +320,10 @@ function Process({ t }) {
             <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
               <div className="script text-3xl mb-2">{t.steps[0]}</div>
               <p className="text-[var(--muted)] flex-1">{t.stepsTxt[0]}</p>
-              <div className="mt-4 flex items-center gap-2 text-[var(--muted)] text-xs tracking-wide uppercase">
-                <span className="inline-block w-10 h-px bg-[var(--line)]" />
-                <span>další krok</span>
-                <span className="text-lg">→</span>
               </div>
             </div>
           </div>
+      
 
           {/* 2. krok */}
           <div className="flex flex-col h-full">
@@ -338,10 +335,6 @@ function Process({ t }) {
             <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
               <div className="script text-3xl mb-2">{t.steps[1]}</div>
               <p className="text-[var(--muted)] flex-1">{t.stepsTxt[1]}</p>
-              <div className="mt-4 flex items-center gap-2 text-[var(--muted)] text-xs tracking-wide uppercase">
-                <span className="inline-block w-10 h-px bg-[var(--line)]" />
-                <span>další krok</span>
-                <span className="text-lg">→</span>
               </div>
             </div>
           </div>
