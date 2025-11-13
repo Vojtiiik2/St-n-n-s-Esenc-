@@ -20,9 +20,11 @@ nav, button, a, p, label {
 }
 
 
+
 .script {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Dancing Script', cursive !important;
 }
+
 
 .glass {
   backdrop-filter: blur(10px);
