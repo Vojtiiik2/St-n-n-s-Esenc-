@@ -192,7 +192,7 @@ const Header = ({ t, lang, setLang }) => (
 );
 
 /* -----------------------------------------
-   Hero (s CTA na Contact)
+   Hero
 ----------------------------------------- */
 const MAIN_HERO =
   "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1800&auto=format&fit=crop";
@@ -295,7 +295,7 @@ function Home({ t }) {
 }
 
 /* -----------------------------------------
-   Další sekce
+   Jak pracujeme (s obrázky)
 ----------------------------------------- */
 function Process({ t }) {
   return (
@@ -307,22 +307,57 @@ function Process({ t }) {
       />
       <section className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="script text-4xl mb-8">{t.processH}</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {t.steps.map((s, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow"
-            >
-              <div className="script text-2xl mb-1">{s}</div>
-              <div className="text-[var(--muted)]">{t.stepsTxt[i]}</div>
+
+        <div className="space-y-12">
+
+          {/* 1. krok – konzultace */}
+          <div className="grid md:grid-cols-2 gap-6 items-center">
+            <img
+              src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop"
+              className="rounded-2xl soft-shadow w-full h-full object-cover"
+              alt=""
+            />
+            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+              <div className="script text-3xl mb-2">{t.steps[0]}</div>
+              <p className="text-[var(--muted)]">{t.stepsTxt[0]}</p>
             </div>
-          ))}
+          </div>
+
+          {/* 2. krok – návrh */}
+          <div className="grid md:grid-cols-2 gap-6 items-center md:flex-row-reverse">
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
+              className="rounded-2xl soft-shadow w-full h-full object-cover"
+              alt=""
+            />
+            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+              <div className="script text-3xl mb-2">{t.steps[1]}</div>
+              <p className="text-[var(--muted)]">{t.stepsTxt[1]}</p>
+            </div>
+          </div>
+
+          {/* 3. krok – realizace */}
+          <div className="grid md:grid-cols-2 gap-6 items-center">
+            <img
+              src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?q=80&w=1600&auto=format&fit=crop"
+              className="rounded-2xl soft-shadow w-full h-full object-cover"
+              alt=""
+            />
+            <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
+              <div className="script text-3xl mb-2">{t.steps[2]}</div>
+              <p className="text-[var(--muted)]">{t.stepsTxt[2]}</p>
+            </div>
+          </div>
+
         </div>
       </section>
     </>
   );
 }
 
+/* -----------------------------------------
+   Pricing
+----------------------------------------- */
 function Pricing({ t }) {
   return (
     <>
@@ -354,6 +389,9 @@ function Pricing({ t }) {
   );
 }
 
+/* -----------------------------------------
+   Galerie
+----------------------------------------- */
 function Gallery({ t }) {
   const GALLERY = [
     "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1600&auto=format&fit=crop",
@@ -394,6 +432,9 @@ function Gallery({ t }) {
   );
 }
 
+/* -----------------------------------------
+   Hotové stínění
+----------------------------------------- */
 function Finished({ t }) {
   return (
     <>
@@ -420,6 +461,9 @@ function Finished({ t }) {
   );
 }
 
+/* -----------------------------------------
+   Esence
+----------------------------------------- */
 function Essences({ t }) {
   return (
     <>
@@ -448,6 +492,9 @@ function Essences({ t }) {
   );
 }
 
+/* -----------------------------------------
+   Kontakt
+----------------------------------------- */
 function Contact({ t }) {
   return (
     <>
