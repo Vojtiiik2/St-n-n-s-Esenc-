@@ -186,24 +186,52 @@ function Finished({ t }) {
 
 // ostatní sekce zůstaly beze změn – Process, Pricing, Gallery, Essences, Contact (stejné jako předtím)
 
+function App() {
+  const { lang, setLang, t } = useLang();
+  const { route } = useRoute();
+
+  const Page = useMemo(() => {
+    switch (route) {
+      case "/process": return <Process t={t} />;
+      case "/pricing": return <Pricing t={t} />;
+      case "/gallery": return <Gallery t={t} />;
+      case "/finished": return <Finished t={t} />;
+      case "/essences": return <Essences t={t} />;
+      case "/contact": return <Contact t={t} />;
+      default: return <Home t={t} />;
+    }
+  }, [route, t]);
+
+  return (
+    <>
+      <Header t={t} lang={lang} setLang={setLang} />
+      <main className="pt-16">{Page}</main>
+      <footer className="bg-[#222] text-[#ddd] mt-10">
+        <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
+          <div>
+            <div className="script text-2xl">{t.brand1}</div>
+            <div className="text-sm text-[#bdbdbd]">{t.brand2}</div>
+          </div>
+          <div className="grid gap-2">
+            <div className="font-semibold">Osobní přístup</div>
+            <div className="text-sm text-[#bdbdbd]">Řešení na míru vašemu stylu.</div>
+            <div className="font-semibold mt-3">Prémiová kvalita</div>
+            <div className="text-sm text-[#bdbdbd]">Pečlivé zpracování detailů.</div>
+            <div className="font-semibold mt-3">Ověřená odbornost</div>
+            <div className="text-sm text-[#bdbdbd]">Dvacet let zkušeností.</div>
+          </div>
+          <div className="text-sm text-[#bdbdbd]">
+            <p>&copy; 2025 {t.brand1}. {t.rights}</p>
+          </div>
+        </div>
+      </footer>
+
+      <div id="lb" className="lb" onClick={closeLightbox} aria-hidden="true">
+        <button className="absolute top-5 right-6 text-white text-3xl" aria-label="Close" onClick={closeLightbox}>&times;</button>
+        <img id="lbimg" alt="preview" />
+      </div>
+    </>
+  );
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-
-// lightbox
-function openLightbox(e, src) {
-  e.preventDefault();
-  const lb = document.getElementById("lb");
-  const img = document.getElementById("lbimg");
-  if (lb && img) {
-    img.src = src;
-    lb.style.display = "flex";
-    lb.setAttribute("aria-hidden", "false");
-  }
-}
-
-function closeLightbox() {
-  const lb = document.getElementById("lb");
-  if (lb) {
-    lb.style.display = "none";
-    lb.setAttribute("aria-hidden", "true");
-  }
-}
