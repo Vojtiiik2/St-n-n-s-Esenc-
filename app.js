@@ -13,7 +13,18 @@ const STR = {
     cta: "Nezávazná konzultace",
 
     homeAbout:
-      "Navrhuji stínění, které ctí architekturu, rytmus dne a prostor. Každý detail ladím tak, aby látka, světlo a vůně tvořily harmonii vašeho domova.",
+      <section className="py-16 max-w-4xl mx-auto px-4">
+  <h2 className="script text-4xl mb-6">O nás</h2>
+  <p className="text-[var(--muted)] text-lg leading-relaxed">
+    Navrhuji stínění, které ctí architekturu, rytmus dne a prostor. Každý detail ladím tak, 
+    aby látka, světlo a vůně tvořily harmonii vašeho domova. Jsme rodinná služba s více než 
+    dvaceti lety zkušeností s prací s látkou, jemností detailu a atmosférou interiéru. Každý 
+    projekt vnímáme individuálně — s respektem k prostoru, světlu i vašemu stylu. Věřím, že 
+    dobře navržené stínění dokáže proměnit domov v místo, kde se cítíte klidně, příjemně 
+    a sami sebou.
+  </p>
+</section>
+
 
     priceH: "Kolik zaplatíte",
     priceP:
