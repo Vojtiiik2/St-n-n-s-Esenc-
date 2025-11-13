@@ -13,18 +13,7 @@ const STR = {
     cta: "Nezávazná konzultace",
 
     homeAbout:
-      <section className="py-16 max-w-4xl mx-auto px-4">
-  <h2 className="script text-4xl mb-6">O nás</h2>
-  <p className="text-[var(--muted)] text-lg leading-relaxed">
-    Navrhuji stínění, které ctí architekturu, rytmus dne a prostor. Každý detail ladím tak, 
-    aby látka, světlo a vůně tvořily harmonii vašeho domova. Jsme rodinná služba s více než 
-    dvaceti lety zkušeností s prací s látkou, jemností detailu a atmosférou interiéru. Každý 
-    projekt vnímáme individuálně — s respektem k prostoru, světlu i vašemu stylu. Věřím, že 
-    dobře navržené stínění dokáže proměnit domov v místo, kde se cítíte klidně, příjemně 
-    a sami sebou.
-  </p>
-</section>
-
+      "Navrhuji stínění, které ctí architekturu, rytmus dne a prostor. Každý detail ladím tak, aby látka, světlo a vůně tvořily harmonii vašeho domova. Jsme rodinná služba s více než dvaceti lety zkušeností s prací s látkou, jemností detailu a atmosférou interiéru. Každý projekt vnímáme individuálně — s respektem k prostoru, světlu i vašemu stylu. Věřím, že dobře navržené stínění dokáže proměnit domov v místo, kde se cítíte klidně, příjemně a sami sebou.",
 
     priceH: "Kolik zaplatíte",
     priceP:
@@ -77,7 +66,7 @@ const STR = {
     cta: "Free Consultation",
 
     homeAbout:
-      "We design shading that respects architecture, rhythm and emotion. Every detail combines fabric, light and scent to create harmony at home.",
+      "We design shading that respects architecture, daily rhythm and space. Every detail combines fabric, light and scent to create a calm, harmonious home. We are a family-run service with over twenty years of experience working with textiles, details and interior atmosphere. Each project is approached individually — with respect for the space, light and your personal style. We believe well-designed shading can transform a house into a place where you feel grounded, comfortable and yourself.",
 
     priceH: "Pricing",
     priceP:
@@ -273,6 +262,7 @@ function Home({ t }) {
       <Hero t={t} bg={MAIN_HERO} showCta />
 
       <section className="py-16 max-w-4xl mx-auto px-4">
+        <h2 className="script text-4xl mb-6">O nás</h2>
         <p className="text-[var(--muted)] text-lg leading-relaxed">{t.homeAbout}</p>
       </section>
 
@@ -307,7 +297,6 @@ function Home({ t }) {
 /* -----------------------------------------
    Další sekce
 ----------------------------------------- */
-
 function Process({ t }) {
   return (
     <>
@@ -623,4 +612,5 @@ function closeLightbox() {
    Render
 ----------------------------------------- */
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
 
