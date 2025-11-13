@@ -1,7 +1,7 @@
 const { useState, useEffect, useMemo } = React;
 
 /* -----------------------------------------
-   i18n texty
+   Texty (CZ / EN)
 ----------------------------------------- */
 const STR = {
   cs: {
@@ -60,7 +60,7 @@ const STR = {
   en: {
     brand1: "Jana Segelberg",
     brand2: "Shade & Scent",
-    nav: ["Process", "Pricing", "Gallery", "Finished shading", "Essences", "Contact"],
+    nav: ["Process", "Pricing", "Gallery", "Finished Shading", "Essences", "Contact"],
     heroH1: "Where light meets emotion",
     heroSub: "Curtains · Drapes · Blinds · Scents",
     cta: "Free Consultation",
@@ -80,7 +80,7 @@ const STR = {
       "Made to measure, precise installation, clean handover."
     ],
 
-    finishedH: "Finished shading",
+    finishedH: "Finished Shading",
     finished: [
       { name: "Blackout", note: "Full darkness for bedrooms and media rooms." },
       { name: "Voile curtain", note: "Soft light, privacy preserved." },
@@ -126,16 +126,6 @@ function useLang() {
 /* -----------------------------------------
    Router (hash based)
 ----------------------------------------- */
-const ROUTES = {
-  "/": "Home",
-  "/process": "Process",
-  "/pricing": "Pricing",
-  "/gallery": "Gallery",
-  "/finished": "Finished",
-  "/essences": "Essences",
-  "/contact": "Contact"
-};
-
 function useRoute() {
   const [route, setRoute] = useState(() => location.hash.replace("#", "") || "/");
   useEffect(() => {
@@ -165,9 +155,14 @@ const Header = ({ t, lang, setLang }) => (
         {t.nav.map((label, i) => {
           const path = ["/process", "/pricing", "/gallery", "/finished", "/essences", "/contact"][i];
           return (
-            <a key={i} className="hover:text-[var(--text)]/90 cursor-pointer" onClick={() => go(path)}>
-              {label}
-            </a>
+            <button
+              key={i}
+              className="hover:text-[var(--text)]/90 text-[var(--text)]/75 relative group"
+              onClick={() => go(path)}
+            >
+              <span>{label}</span>
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--sand)] group-hover:w-full transition-all duration-200"></span>
+            </button>
           );
         })}
       </nav>
@@ -175,14 +170,19 @@ const Header = ({ t, lang, setLang }) => (
       <div className="flex gap-2">
         <button
           onClick={() => setLang("cs")}
-          className={"px-3 py-1.5 text-sm rounded-lg border " + (lang === "cs" ? "border-[var(--sand)]" : "border-[var(--line)]")}
+          className={
+            "px-3 py-1.5 text-sm rounded-lg border " +
+            (lang === "cs" ? "border-[var(--sand)]" : "border-[var(--line)]")
+          }
         >
           CZ
         </button>
-
         <button
           onClick={() => setLang("en")}
-          className={"px-3 py-1.5 text-sm rounded-lg border " + (lang === "en" ? "border-[var(--sand)]" : "border-[var(--line)]")}
+          className={
+            "px-3 py-1.5 text-sm rounded-lg border " +
+            (lang === "en" ? "border-[var(--sand)]" : "border-[var(--line)]")
+          }
         >
           EN
         </button>
@@ -192,9 +192,12 @@ const Header = ({ t, lang, setLang }) => (
 );
 
 /* -----------------------------------------
-   Hero
+   Hero (s CTA na Contact)
 ----------------------------------------- */
-function Hero({ t, small = false, bg }) {
+const MAIN_HERO =
+  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1800&auto=format&fit=crop";
+
+function Hero({ t, small = false, bg, showCta = false }) {
   return (
     <section
       className={
@@ -206,16 +209,29 @@ function Hero({ t, small = false, bg }) {
         backgroundPosition: "left center"
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/15"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/20"></div>
 
       <div className="relative max-w-6xl mx-auto px-4 w-full">
         <div className="max-w-2xl text-white drop-shadow-[0_2px_14px_rgba(0,0,0,.35)]">
-          <h1 className={"script " + (small ? "text-3xl md:text-5xl" : "text-4xl md:text-6xl") + " mb-3"}>
+          <h1
+            className={
+              "script " + (small ? "text-3xl md:text-5xl" : "text-4xl md:text-6xl") + " mb-3"
+            }
+          >
             {t.heroH1}
           </h1>
           <p className={(small ? "text-sm md:text-base" : "text-base md:text-lg") + " opacity-95"}>
             {t.heroSub}
           </p>
+
+          {!small && showCta && (
+            <button
+              onClick={() => go("/contact")}
+              className="btn-cta inline-block mt-6 px-5 py-3 rounded-full bg-[var(--sand)] text-[var(--text)] font-bold border border-black/5"
+            >
+              {t.cta}
+            </button>
+          )}
         </div>
       </div>
     </section>
@@ -223,7 +239,7 @@ function Hero({ t, small = false, bg }) {
 }
 
 /* -----------------------------------------
-   Home page
+   Home
 ----------------------------------------- */
 function Home({ t }) {
   const FEEL_IMG = [
@@ -233,23 +249,26 @@ function Home({ t }) {
     "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
   ];
 
+  const cards = ["Prostor", "Textura", "Esence", "Harmonie"];
+  const texts = [
+    "Světlo, které dýchá – a prostor, který se vám přizpůsobí.",
+    "Dotek látky v detailu. Kvalita, která vydrží roky.",
+    "Jemná vůně jako závěrečná nota atmosféry.",
+    "Plynulost, klid, přirozené linie – bez kompromisu."
+  ];
+
   return (
     <>
-      <Hero
-        t={t}
-        bg="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1800&auto=format&fit=crop"
-      />
+      <Hero t={t} bg={MAIN_HERO} showCta />
 
       <section className="py-16 max-w-4xl mx-auto px-4">
-        <p className="text-[var(--muted)] text-lg leading-relaxed">
-          {t.homeAbout}
-        </p>
+        <p className="text-[var(--muted)] text-lg leading-relaxed">{t.homeAbout}</p>
       </section>
 
       <section className="section-swap" data-first>
         <div className="max-w-6xl mx-auto px-4 py-16">
           <div className="grid md:grid-cols-2 gap-6">
-            {["Prostor", "Textura", "Esence", "Harmonie"].map((name, i) => (
+            {cards.map((name, i) => (
               <article
                 key={i}
                 className="rounded-2xl bg-white border border-[var(--line)] soft-shadow overflow-hidden"
@@ -258,19 +277,11 @@ function Home({ t }) {
                   <img
                     src={FEEL_IMG[i]}
                     className="w-full h-full object-cover aspect-[4/3]"
+                    alt=""
                   />
-                  <div className="p-6 md:p-8">
+                  <div className="p-6 md:p-8 flex flex-col justify-center">
                     <h3 className="script text-3xl mb-2">{name}</h3>
-                    <p className="text-[var(--muted)]">
-                      {
-                        [
-                          "Světlo, které dýchá – a prostor, který se vám přizpůsobí.",
-                          "Dotek látky v detailu. Kvalita, která vydrží roky.",
-                          "Jemná vůně jako závěrečná nota atmosféry.",
-                          "Plynulost, klid, přirozené linie – bez kompromisu."
-                        ][i]
-                      }
-                    </p>
+                    <p className="text-[var(--muted)]">{texts[i]}</p>
                   </div>
                 </div>
               </article>
@@ -283,7 +294,7 @@ function Home({ t }) {
 }
 
 /* -----------------------------------------
-   Process, Pricing, Gallery, Essences, Contact
+   Další sekce
 ----------------------------------------- */
 
 function Process({ t }) {
@@ -294,10 +305,8 @@ function Process({ t }) {
         small
         bg="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1800&auto=format&fit=crop"
       />
-
       <section className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="script text-4xl mb-8">{t.processH}</h2>
-
         <div className="grid md:grid-cols-3 gap-6">
           {t.steps.map((s, i) => (
             <div
@@ -322,11 +331,9 @@ function Pricing({ t }) {
         small
         bg="https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=1800&auto=format&fit=crop"
       />
-
       <section className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="script text-4xl mb-4">{t.priceH}</h2>
         <p className="text-[var(--muted)] max-w-3xl">{t.priceP}</p>
-
         <div className="mt-8 grid md:grid-cols-3 gap-4">
           {["Voile / Záclona", "Závěs (blackout/dim-out)", "Kolejnice / systém"].map(
             (name, i) => (
@@ -356,7 +363,6 @@ function Gallery({ t }) {
     "https://images.unsplash.com/photo-1521783988139-893ce3cdb4e8?q=80&w=1600&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1493666438817-866a91353ca9?q=80&w=1600&auto=format&fit=crop"
   ];
-
   return (
     <>
       <Hero
@@ -364,16 +370,49 @@ function Gallery({ t }) {
         small
         bg="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1800&auto=format&fit=crop"
       />
-
       <section className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="script text-4xl mb-6">{t.galleryH}</h2>
-
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {GALLERY.map((src, i) => (
-            <a key={i} href={src} onClick={(e) => openLightbox(e, src)} className="group relative">
-              <img src={src} className="rounded-xl soft-shadow w-full h-full object-cover aspect-[4/3]" />
+            <a
+              key={i}
+              href={src}
+              onClick={(e) => openLightbox(e, src)}
+              className="group relative"
+            >
+              <img
+                src={src}
+                className="rounded-xl soft-shadow w-full h-full object-cover aspect-[4/3]"
+                alt=""
+              />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition rounded-xl"></div>
             </a>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function Finished({ t }) {
+  return (
+    <>
+      <Hero
+        t={t}
+        small
+        bg="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1800&auto=format&fit=crop"
+      />
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="script text-4xl mb-6">{t.finishedH}</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {t.finished.map((f, i) => (
+            <div
+              key={i}
+              className="rounded-2xl border border-[var(--line)] p-6 soft-shadow bg-gradient-to-b from-white to-[var(--bg2)]"
+            >
+              <div className="script text-3xl mb-2">{f.name}</div>
+              <p className="text-[var(--muted)]">{f.note}</p>
+            </div>
           ))}
         </div>
       </section>
@@ -389,10 +428,8 @@ function Essences({ t }) {
         small
         bg="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1800&auto=format&fit=crop"
       />
-
       <section className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="script text-4xl mb-6">{t.essenceH}</h2>
-
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {t.essences.map((e, i) => (
             <div
@@ -419,67 +456,68 @@ function Contact({ t }) {
         small
         bg="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1800&auto=format&fit=crop"
       />
-
       <section className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="script text-4xl mb-6">{t.contactH}</h2>
-
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <p><strong>{t.name}</strong><br/>Jana Segelberg</p>
-            <p><strong>E-mail</strong><br/><a href="mailto:hello@janasegelberg.com" className="underline">hello@janasegelberg.com</a></p>
-            <p><strong>Telefon</strong><br/><a href="tel:+420724379309" className="underline">+420 724 379 309</a></p>
+            <p>
+              <strong>{t.name}</strong>
+              <br />
+              Jana Segelberg
+            </p>
+            <p className="mt-3">
+              <strong>E-mail</strong>
+              <br />
+              <a className="underline" href="mailto:hello@janasegelberg.com">
+                hello@janasegelberg.com
+              </a>
+            </p>
+            <p className="mt-3">
+              <strong>Telefon</strong>
+              <br />
+              <a className="underline" href="tel:+420724379309">
+                +420 724 379 309
+              </a>
+            </p>
+            <p className="text-[var(--muted)] text-sm mt-6">
+              Po schválení vizuálu napojíme formulář na Google Sheets + auto-reply (CZ/EN).
+            </p>
           </div>
 
           <form className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow">
             <div className="grid gap-4">
-              <label className="text-sm">{t.name}
-                <input className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required />
+              <label className="text-sm">
+                {t.name}
+                <input
+                  className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]"
+                  required
+                />
               </label>
-
-              <label className="text-sm">{t.email}
-                <input type="email" className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required />
+              <label className="text-sm">
+                {t.email}
+                <input
+                  type="email"
+                  className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]"
+                  required
+                />
               </label>
-
-              <label className="text-sm">{t.message}
-                <textarea rows="5" className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required></textarea>
+              <label className="text-sm">
+                {t.message}
+                <textarea
+                  rows="5"
+                  className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]"
+                  required
+                ></textarea>
               </label>
-
-              <button type="button" className="btn-cta px-5 py-3 rounded-full bg-[var(--sand)] text-[var(--text)] font-bold border border-black/5">
+              <button
+                type="button"
+                className="btn-cta px-5 py-3 rounded-full bg-[var(--sand)] text-[var(--text)] font-bold border border-black/5"
+              >
                 {t.send}
               </button>
+              <p className="text-[var(--muted)] text-sm">* Demo formulář – bez odesílání.</p>
             </div>
           </form>
-        </div>
-      </section>
-    </>
-  );
-}
-
-/* -----------------------------------------
-   Hotové stínění (Finished)
------------------------------------------ */
-function Finished({ t }) {
-  return (
-    <>
-      <Hero
-        t={t}
-        small
-        bg="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1800&auto=format&fit=crop"
-      />
-
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="script text-4xl mb-6">{t.finishedH}</h2>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {t.finished.map((f, i) => (
-            <div
-              key={i}
-              className="rounded-2xl border border-[var(--line)] p-6 soft-shadow bg-gradient-to-b from-white to-[var(--bg2)]"
-            >
-              <div className="script text-3xl mb-2">{f.name}</div>
-              <p className="text-[var(--muted)]">{f.note}</p>
-            </div>
-          ))}
         </div>
       </section>
     </>
@@ -515,7 +553,6 @@ function App() {
   return (
     <>
       <Header t={t} lang={lang} setLang={setLang} />
-
       <main className="pt-16">{Page}</main>
 
       <footer className="bg-[#222] text-[#ddd] mt-10">
@@ -524,26 +561,28 @@ function App() {
             <div className="script text-2xl">{t.brand1}</div>
             <div className="text-sm text-[#bdbdbd]">{t.brand2}</div>
           </div>
-
           <div className="grid gap-2">
             <div className="font-semibold">Osobní přístup</div>
             <div className="text-sm text-[#bdbdbd]">Řešení na míru vašemu stylu.</div>
-
             <div className="font-semibold mt-3">Prémiová kvalita</div>
             <div className="text-sm text-[#bdbdbd]">Pečlivé zpracování detailů.</div>
-
             <div className="font-semibold mt-3">Ověřená odbornost</div>
             <div className="text-sm text-[#bdbdbd]">Dvacet let zkušeností.</div>
           </div>
-
           <div className="text-sm text-[#bdbdbd]">
-            <p>&copy; 2025 {t.brand1}. {t.rights}</p>
+            <p>
+              &copy; 2025 {t.brand1}. {t.rights}
+            </p>
           </div>
         </div>
       </footer>
 
       <div id="lb" className="lb" onClick={closeLightbox} aria-hidden="true">
-        <button className="absolute top-5 right-6 text-white text-3xl" aria-label="Close" onClick={closeLightbox}>
+        <button
+          className="absolute top-5 right-6 text-white text-3xl"
+          aria-label="Close"
+          onClick={closeLightbox}
+        >
           &times;
         </button>
         <img id="lbimg" alt="preview" />
@@ -573,3 +612,4 @@ function closeLightbox() {
    Render
 ----------------------------------------- */
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
