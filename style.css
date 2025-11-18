@@ -1,84 +1,180 @@
-
-body, nav, p, a, button, label, input, textarea, span {
-  font-family: 'Inter', sans-serif;
-}
-
-
+/* -------------------------------------------------------
+   ZÁKLADNÍ PROMĚNNÉ
+------------------------------------------------------- */
 :root {
-  --sand: #e9d9c4;
-  --text: #2d2d2d;
-  --muted: #6f6f6f;
-  --line: #ddd;
-  --bg2: #f8f6f3;
+  --text: #1b1b1b;
+  --muted: #6d6d6d;
+  --bg2: #f7f5f3;
+  --line: #e5e1dc;
+  --sand: #d7c7b4;
 }
 
+/* -------------------------------------------------------
+   RESET
+------------------------------------------------------- */
 body {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  color: var(--text);
+  background: #fff;
+  overflow-x: hidden;
 }
-nav, button, a, p, label {
-  font-family: inherit;
-}
 
-
-
+/* Script font */
 .script {
-  font-family: 'Dancing Script', cursive !important;
+  font-family: "Dancing Script", cursive;
 }
 
-
-.glass {
-  backdrop-filter: blur(10px);
+/* -------------------------------------------------------
+   GLOBAL ANIMACE – jemný fade-in celé stránky
+------------------------------------------------------- */
+body.reveal {
+  opacity: 0;
+  animation: fadeInBody 0.8s ease-out forwards;
 }
 
-.soft-shadow {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+@keyframes fadeInBody {
+  to {
+    opacity: 1;
+  }
 }
 
+/* -------------------------------------------------------
+   SECTIONS – reveal při scrollu
+------------------------------------------------------- */
+[data-first],
+.section-swap,
+section {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: revealSection 1s ease-out forwards;
+}
+
+@keyframes revealSection {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------------
+   HERO – jemný parallax & fade overlay
+------------------------------------------------------- */
+section[style*="background-image"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  opacity: 0;
+  animation: heroFade 1.2s ease-out forwards;
+}
+
+@keyframes heroFade {
+  to {
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------
+   NAV – slide underline (už máš, jen jemnější)
+------------------------------------------------------- */
+nav button {
+  position: relative;
+  overflow: hidden;
+}
+
+nav button span::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--sand);
+  transition: width 0.25s ease;
+}
+
+nav button:hover span::after {
+  width: 100%;
+}
+
+/* -------------------------------------------------------
+   CTA BUTTON – jemný hover
+------------------------------------------------------- */
 .btn-cta {
-  transition: all .25s ease;
+  transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .btn-cta:hover {
+  background: #cbb9a3;
   transform: translateY(-2px);
-  background-color: #e0c8aa;
 }
 
-.page-enter {
-  opacity: 0;
-  transition: opacity 0.5s ease;
+/* -------------------------------------------------------
+   KARTY – jemné přiblížení & stín při hover
+------------------------------------------------------- */
+.soft-shadow {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-.page-enter-active {
-  opacity: 1;
+article,
+.rounded-2xl {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.scroll-hint {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  border-bottom: 2px solid #fff;
-  border-right: 2px solid #fff;
-  transform: rotate(45deg);
-  animation: scrollAnim 1.5s infinite;
+article:hover,
+.rounded-2xl:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    0 14px 32px rgba(0, 0, 0, 0.08);
 }
 
-@keyframes scrollAnim {
-  0% { transform: rotate(45deg) translate(0, 0); opacity: 1; }
-  50% { transform: rotate(45deg) translate(0, 8px); opacity: .6; }
-  100% { transform: rotate(45deg) translate(0, 0); opacity: 1; }
+/* -------------------------------------------------------
+   OBRÁZKY – jemný zoom
+------------------------------------------------------- */
+img {
+  transition: transform 0.6s ease;
 }
 
+img:hover {
+  transform: scale(1.03);
+}
+
+/* -------------------------------------------------------
+   LIGHTBOX
+------------------------------------------------------- */
 .lb {
   display: none;
   position: fixed;
-  z-index: 50;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  align-items: center;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
   justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
-.lb img {
+#lbimg {
   max-width: 90%;
   max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
+
+/* -------------------------------------------------------
+   MOBILE IMPROVEMENTS
+------------------------------------------------------- */
+@media (max-width: 768px) {
+  section,
+  .section-swap {
+    animation-duration: 0.8s;
+  }
+
+  img:hover {
+    transform: scale(1); /* Žádný zoom na mobilech */
+  }
+}
+
