@@ -1,4 +1,6 @@
 const { useState, useEffect, useMemo } = React;
+const MAIN_HERO =
+  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1800&auto=format&fit=crop";
 
 /* -----------------------------------------
    Scroll Reveal – jemné animace Mottura styl
