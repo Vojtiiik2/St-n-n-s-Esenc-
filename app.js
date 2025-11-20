@@ -2,9 +2,6 @@ const { useState, useEffect, useMemo } = React;
 const MAIN_HERO =
   "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1800&auto=format&fit=crop";
 
-/* -----------------------------------------
-   Scroll Reveal – jemné animace Mottura styl
------------------------------------------ */
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
@@ -20,9 +17,6 @@ function useReveal() {
   }, []);
 }
 
-/* -----------------------------------------
-   Texty (CZ / EN)
------------------------------------------ */
 const STR = {
   cs: {
     brand1: "Jana Segelberg",
@@ -35,10 +29,34 @@ const STR = {
     homeAbout:
       "Navrhuji stínění, které ctí architekturu, rytmus dne a prostor. Každý detail ladím tak, aby látka, světlo a vůně tvořily harmonii vašeho domova. Jsme rodinná služba s více než dvaceti lety zkušeností s prací s látkou, jemností detailu a atmosférou interiéru. Každý projekt vnímáme individuálně — s respektem k prostoru, světlu i vašemu stylu. Věřím, že dobře navržené stínění dokáže proměnit domov v místo, kde se cítíte klidně, příjemně a sami sebou.",
 
+    servicesH: "Služby",
+    services: [
+      { name: "Záclony", note: "Lehkost, jemnost a soukromí." },
+      { name: "Závěsy", note: "Estetika, teplo a útulnost." },
+      { name: "Rolety", note: "Praktičnost a čisté linie." },
+      { name: "Technické systémy", note: "Minimalistické a funkční řešení." }
+    ],
+
+    benefitsH: "Proč my",
+    benefits: [
+      { name: "Individuální návrh", note: "Řešení vytvořené přesně pro váš prostor." },
+      { name: "20 let zkušeností", note: "Znalost materiálů i technologií." },
+      { name: "Jemnost detailu", note: "Každý šev a linie jsou promyšlené." }
+    ],
+
+    faqH: "Často se ptáte",
+    faq: [
+      { q: "Jak probíhá konzultace?", a: "Přijedu k vám, podívám se na prostor, zvolíme směr a materiály." },
+      { q: "Jak dlouhá je výroba?", a: "Obvykle 3–6 týdnů podle materiálů a techniky." },
+      { q: "Mohu vidět vzorky?", a: "Ano, přivezu vám je osobně při konzultaci." },
+      { q: "Montujete i kolejnice?", a: "Ano, kompletní dodání na klíč." }
+    ],
+
+    inspH: "Atmosféra",
     priceH: "Kolik zaplatíte",
     priceP: "Ceny jsou orientační; závisí na materiálu, rozměrech a typu systému. Rámec sdělím na první schůzce.",
-
     processH: "Jak pracujeme",
+
     steps: ["Konzultace", "Návrh", "Realizace"],
     stepsTxt: [
       "Poznáme váš prostor a očekávání, nastavíme rámec.",
@@ -74,65 +92,11 @@ const STR = {
     message: "Zpráva",
     send: "Odeslat",
     rights: "Všechna práva vyhrazena."
-  },
-
-  en: {
-    brand1: "Jana Segelberg",
-    brand2: "Shade & Scent",
-    nav: ["Process", "Pricing", "Gallery", "Finished Shading", "Essences", "Contact"],
-    heroH1: "Where light meets emotion",
-    heroSub: "Curtains · Drapes · Blinds · Scents",
-    cta: "Free Consultation",
-
-    homeAbout:
-      "We design shading that respects architecture, daily rhythm and space. Every detail combines fabric, light and scent to create a calm, harmonious home. We are a family-run service with over twenty years of experience working with textiles, details and interior atmosphere. Each project is approached individually — with respect for the space, light and your personal style. We believe well-designed shading can transform a house into a place where you feel grounded, comfortable and yourself.",
-
-    priceH: "Pricing",
-    priceP:
-      "Indicative only; depends on materials, sizes and systems. You'll get a budget frame at our first meeting.",
-
-    processH: "Process",
-    steps: ["Consultation", "Design", "Installation"],
-    stepsTxt: [
-      "We discover your space and expectations.",
-      "We select fabrics and systems, set a schedule.",
-      "Made to measure, precise installation, clean handover."
-    ],
-
-    finishedH: "Finished Shading",
-    finished: [
-      { name: "Blackout", note: "Full darkness for bedrooms and media rooms." },
-      { name: "Voile curtain", note: "Soft light, privacy preserved." },
-      { name: "Decorative drape", note: "Adds depth and character." },
-      { name: "Layered shading", note: "Merges function and beauty." },
-      { name: "Technical shading", note: "Minimalist and practical." },
-      { name: "Custom solution", note: "Tailored to your space and mood." }
-    ],
-
-    essenceH: "Essences",
-    essences: [
-      { name: "Vanilla", note: "Warm, soothing — bedroom, reading nook." },
-      { name: "Peppermint", note: "Clean, fresh — home office, kitchen." },
-      { name: "Citrus", note: "Light, uplifting — living room, bathroom." },
-      { name: "Lavender", note: "Relaxing — bedroom, wellness." },
-      { name: "Rosemary", note: "Cleansing, energizing — entry, kitchen." },
-      { name: "Eucalyptus", note: "Refreshing — bathroom." },
-      { name: "Seasonal", note: "Monthly special — changes automatically." }
-    ],
-
-    galleryH: "Gallery",
-    contactH: "Contact",
-    name: "Name",
-    email: "E-mail",
-    message: "Message",
-    send: "Send",
-    rights: "All rights reserved."
   }
 };
 
-/* -----------------------------------------
-   Jazyk
------------------------------------------ */
+STR.en = STR.cs;
+
 function useLang() {
   const [lang, setLang] = useState(() => localStorage.getItem("lang") || "cs");
   useEffect(() => {
@@ -142,9 +106,6 @@ function useLang() {
   return { lang, setLang, t: STR[lang] };
 }
 
-/* -----------------------------------------
-   Router
------------------------------------------ */
 function useRoute() {
   const [route, setRoute] = useState(() => location.hash.replace("#", "") || "/");
   useEffect(() => {
@@ -159,9 +120,6 @@ function go(path) {
   location.hash = path;
 }
 
-/* -----------------------------------------
-   Header
------------------------------------------ */
 const Header = ({ t, lang, setLang }) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-30 border-b border-[var(--line)]/70 bg-white/70 backdrop-blur-md">
@@ -180,8 +138,7 @@ const Header = ({ t, lang, setLang }) => {
                 onClick={() => go(path)}
                 className="relative group hover:text-[var(--text)]/90 text-[var(--text)]/75"
               >
-                {label}
-                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--sand)] group-hover:w-full transition-all duration-200"></span>
+                <span>{label}</span>
               </button>
             );
           })}
@@ -190,19 +147,13 @@ const Header = ({ t, lang, setLang }) => {
         <div className="flex gap-2">
           <button
             onClick={() => setLang("cs")}
-            className={
-              "px-3 py-1.5 text-sm rounded-lg border " +
-              (lang === "cs" ? "border-[var(--sand)]" : "border-[var(--line)]")
-            }
+            className={"px-3 py-1.5 text-sm rounded-lg border " + (lang === "cs" ? "border-[var(--sand)]" : "border-[var(--line)]")}
           >
             CZ
           </button>
           <button
             onClick={() => setLang("en")}
-            className={
-              "px-3 py-1.5 text-sm rounded-lg border " +
-              (lang === "en" ? "border-[var(--sand)]" : "border-[var(--line)]")
-            }
+            className={"px-3 py-1.5 text-sm rounded-lg border " + (lang === "en" ? "border-[var(--sand)]" : "border-[var(--line)]")}
           >
             EN
           </button>
@@ -212,17 +163,11 @@ const Header = ({ t, lang, setLang }) => {
   );
 };
 
-/* -----------------------------------------
-   Hero + animace textu
------------------------------------------ */
 function Hero({ t, small = false, bg, showCta = false }) {
   useReveal();
-
   return (
     <section
-      className={
-        "relative " + (small ? "min-h-[42vh]" : "min-h-[92vh]") + " flex items-center reveal"
-      }
+      className={(small ? "min-h-[42vh]" : "min-h-[92vh]") + " relative flex items-center reveal"}
       style={{
         backgroundImage: `linear-gradient(to right, rgba(0,0,0,.20), rgba(0,0,0,.05)), url('${bg}')`,
         backgroundSize: "cover",
@@ -230,12 +175,10 @@ function Hero({ t, small = false, bg, showCta = false }) {
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/20"></div>
-
       <div className="relative max-w-6xl mx-auto px-4 w-full">
         <div className="max-w-2xl text-white drop-shadow-xl">
-          <h1 className={"script text-5xl md:text-6xl mb-3"}>{t.heroH1}</h1>
+          <h1 className="script text-5xl md:text-6xl mb-3">{t.heroH1}</h1>
           <p className="text-lg opacity-95">{t.heroSub}</p>
-
           {!small && showCta && (
             <button
               onClick={() => go("/contact")}
@@ -250,26 +193,8 @@ function Hero({ t, small = false, bg, showCta = false }) {
   );
 }
 
-/* -----------------------------------------
-   Home
------------------------------------------ */
 function Home({ t }) {
   useReveal();
-
-  const FEEL_IMG = [
-    "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=1600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
-  ];
-
-  const cards = ["Prostor", "Textura", "Esence", "Harmonie"];
-  const texts = [
-    "Světlo, které dýchá – a prostor, který se vám přizpůsobí.",
-    "Dotek látky v detailu. Kvalita, která vydrží roky.",
-    "Jemná vůně jako závěrečná nota atmosféry.",
-    "Plynulost, klid, přirozené linie – bez kompromisu."
-  ];
 
   return (
     <>
@@ -280,37 +205,67 @@ function Home({ t }) {
         <p className="text-[var(--muted)] text-lg leading-relaxed">{t.homeAbout}</p>
       </section>
 
-      <section className="py-16 reveal">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-6">
-            {cards.map((name, i) => (
-              <article
-                key={i}
-                className="rounded-2xl bg-white border border-[var(--line)] soft-shadow overflow-hidden reveal"
-              >
-                <div className="grid md:grid-cols-2">
-                  <img
-                    src={FEEL_IMG[i]}
-                    className="w-full h-full object-cover aspect-[4/3]"
-                    alt=""
-                  />
-                  <div className="p-6 md:p-8 flex flex-col justify-center">
-                    <h3 className="script text-3xl mb-2">{name}</h3>
-                    <p className="text-[var(--muted)]">{texts[i]}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
+      <section className="py-16 max-w-6xl mx-auto px-4 reveal">
+        <h2 className="script text-4xl mb-8">{t.servicesH}</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {t.services.map((s, i) => (
+            <div key={i} className="service-card soft-shadow reveal">
+              <div className="script text-3xl mb-2">{s.name}</div>
+              <p className="text-[var(--muted)]">{s.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-16 max-w-6xl mx-auto px-4 reveal">
+        <h2 className="script text-4xl mb-8">{t.benefitsH}</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {t.benefits.map((b, i) => (
+            <div key={i} className="benefit-card soft-shadow reveal">
+              <div className="script text-3xl mb-2">{b.name}</div>
+              <p className="text-[var(--muted)]">{b.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-16 max-w-4xl mx-auto px-4 reveal text-center">
+        <button
+          onClick={() => go("/contact")}
+          className="btn-cta px-6 py-4 rounded-full bg-[var(--sand)] text-[var(--text)] font-bold border border-black/5 text-lg"
+        >
+          {t.cta}
+        </button>
+      </section>
+
+      <section className="py-16 max-w-4xl mx-auto px-4 reveal">
+        <h2 className="script text-4xl mb-6">{t.faqH}</h2>
+        {t.faq.map((f, i) => (
+          <div key={i} className="faq-item">
+            <div className="font-semibold mb-1">{f.q}</div>
+            <div className="text-[var(--muted)]">{f.a}</div>
           </div>
+        ))}
+      </section>
+
+      <section className="py-16 max-w-6xl mx-auto px-4 reveal">
+        <h2 className="script text-4xl mb-8">{t.inspH}</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {[
+            "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop"
+          ].map((src, i) => (
+            <div key={i} className="inspiration-img soft-shadow overflow-hidden">
+              <img src={src} className="w-full h-full object-cover aspect-[4/3]" />
+            </div>
+          ))}
         </div>
       </section>
     </>
   );
 }
 
-/* -----------------------------------------
-   Jak pracujeme – obrázky + reveal
------------------------------------------ */
 function Process({ t }) {
   useReveal();
 
@@ -322,11 +277,7 @@ function Process({ t }) {
 
   return (
     <>
-      <Hero
-        t={t}
-        small
-        bg={IMGS[1]}
-      />
+      <Hero t={t} small bg={IMGS[1]} />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
         <h2 className="script text-4xl mb-10 text-left md:text-center">{t.processH}</h2>
@@ -334,11 +285,7 @@ function Process({ t }) {
         <div className="grid md:grid-cols-3 gap-8">
           {t.steps.map((step, i) => (
             <div className="flex flex-col h-full reveal" key={i}>
-              <img
-                src={IMGS[i]}
-                className="rounded-2xl soft-shadow w-full mb-4 object-cover aspect-[4/3]"
-                alt=""
-              />
+              <img src={IMGS[i]} className="rounded-2xl soft-shadow w-full mb-4 object-cover aspect-[4/3]" />
               <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
                 <div className="script text-3xl mb-2">{step}</div>
                 <p className="text-[var(--muted)] flex-1">{t.stepsTxt[i]}</p>
@@ -351,15 +298,16 @@ function Process({ t }) {
   );
 }
 
-/* -----------------------------------------
-   Pricing
------------------------------------------ */
 function Pricing({ t }) {
   useReveal();
 
   return (
     <>
-      <Hero t={t} small bg="https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=1800&auto=format&fit=crop" />
+      <Hero
+        t={t}
+        small
+        bg="https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=1800&auto=format&fit=crop"
+      />
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
         <h2 className="script text-4xl mb-4">{t.priceH}</h2>
         <p className="text-[var(--muted)] max-w-3xl">{t.priceP}</p>
@@ -379,9 +327,6 @@ function Pricing({ t }) {
   );
 }
 
-/* -----------------------------------------
-   Galerie
------------------------------------------ */
 function Gallery({ t }) {
   useReveal();
 
@@ -396,24 +341,19 @@ function Gallery({ t }) {
 
   return (
     <>
-      <Hero t={t} small bg="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1800&auto=format&fit=crop" />
+      <Hero
+        t={t}
+        small
+        bg="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1800&auto=format&fit=crop"
+      />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
         <h2 className="script text-4xl mb-6">{t.galleryH}</h2>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {GALLERY.map((src, i) => (
-            <a
-              key={i}
-              href={src}
-              className="relative group reveal"
-              onClick={(e) => openLightbox(e, src)}
-            >
-              <img
-                src={src}
-                className="rounded-xl soft-shadow w-full h-full object-cover aspect-[4/3]"
-                alt=""
-              />
+            <a key={i} href={src} className="relative group reveal" onClick={(e) => openLightbox(e, src)}>
+              <img src={src} className="rounded-xl soft-shadow w-full h-full object-cover aspect-[4/3]" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition rounded-xl"></div>
             </a>
           ))}
@@ -423,15 +363,16 @@ function Gallery({ t }) {
   );
 }
 
-/* -----------------------------------------
-   Finished Shading
------------------------------------------ */
 function Finished({ t }) {
   useReveal();
 
   return (
     <>
-      <Hero t={t} small bg="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1800&auto=format&fit=crop" />
+      <Hero
+        t={t}
+        small
+        bg="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1800&auto=format&fit=crop"
+      />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
         <h2 className="script text-4xl mb-6">{t.finishedH}</h2>
@@ -448,15 +389,16 @@ function Finished({ t }) {
   );
 }
 
-/* -----------------------------------------
-   Esence
------------------------------------------ */
 function Essences({ t }) {
   useReveal();
 
   return (
     <>
-      <Hero t={t} small bg="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1800&auto=format&fit=crop" />
+      <Hero
+        t={t}
+        small
+        bg="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1800&auto=format&fit=crop"
+      />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
         <h2 className="script text-4xl mb-6">{t.essenceH}</h2>
@@ -474,15 +416,16 @@ function Essences({ t }) {
   );
 }
 
-/* -----------------------------------------
-   Kontakt
------------------------------------------ */
 function Contact({ t }) {
   useReveal();
 
   return (
     <>
-      <Hero t={t} small bg="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1800&auto=format&fit=crop" />
+      <Hero
+        t={t}
+        small
+        bg="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1800&auto=format&fit=crop"
+      />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
         <h2 className="script text-4xl mb-6">{t.contactH}</h2>
@@ -532,9 +475,6 @@ function Contact({ t }) {
   );
 }
 
-/* -----------------------------------------
-   App
------------------------------------------ */
 function App() {
   const { lang, setLang, t } = useLang();
   const { route } = useRoute();
@@ -587,11 +527,7 @@ function App() {
       </footer>
 
       <div id="lb" className="lb" onClick={closeLightbox} aria-hidden="true">
-        <button
-          className="absolute top-5 right-6 text-white text-3xl"
-          aria-label="Close"
-          onClick={closeLightbox}
-        >
+        <button className="absolute top-5 right-6 text-white text-3xl" aria-label="Close" onClick={closeLightbox}>
           &times;
         </button>
         <img id="lbimg" alt="preview" />
@@ -600,9 +536,6 @@ function App() {
   );
 }
 
-/* -----------------------------------------
-   Lightbox
------------------------------------------ */
 function openLightbox(e, src) {
   e.preventDefault();
   const lb = document.getElementById("lb");
@@ -615,10 +548,8 @@ function closeLightbox() {
   document.getElementById("lb").style.display = "none";
 }
 
-/* -----------------------------------------
-   Render
------------------------------------------ */
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
 
 
 
