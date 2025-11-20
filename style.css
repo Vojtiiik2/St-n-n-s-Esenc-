@@ -1,6 +1,3 @@
-/* -------------------------------------------------------
-   ZÁKLADNÍ PROMĚNNÉ
-------------------------------------------------------- */
 :root {
   --text: #1b1b1b;
   --muted: #6d6d6d;
@@ -9,25 +6,18 @@
   --sand: #d7c7b4;
 }
 
-/* -------------------------------------------------------
-   RESET
-------------------------------------------------------- */
 body {
   margin: 0;
-  font-family: "Lato", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   color: var(--text);
   background: #fff;
   overflow-x: hidden;
 }
 
-/* Script font */
 .script {
   font-family: "Dancing Script", cursive;
 }
 
-/* -------------------------------------------------------
-   GLOBAL ANIMACE – jemný fade-in celé stránky
-------------------------------------------------------- */
 body.reveal {
   opacity: 0;
   animation: fadeInBody 0.8s ease-out forwards;
@@ -39,9 +29,6 @@ body.reveal {
   }
 }
 
-/* -------------------------------------------------------
-   SECTIONS – reveal při scrollu
-------------------------------------------------------- */
 [data-first],
 .section-swap,
 section {
@@ -57,9 +44,6 @@ section {
   }
 }
 
-/* -------------------------------------------------------
-   HERO – jemný parallax & fade overlay
-------------------------------------------------------- */
 section[style*="background-image"]::after {
   content: "";
   position: absolute;
@@ -76,9 +60,6 @@ section[style*="background-image"]::after {
   }
 }
 
-/* -------------------------------------------------------
-   NAV – slide underline (už máš, jen jemnější)
-------------------------------------------------------- */
 nav button {
   position: relative;
   overflow: hidden;
@@ -99,9 +80,6 @@ nav button:hover span::after {
   width: 100%;
 }
 
-/* -------------------------------------------------------
-   CTA BUTTON – jemný hover
-------------------------------------------------------- */
 .btn-cta {
   transition: background 0.25s ease, transform 0.25s ease;
 }
@@ -111,9 +89,6 @@ nav button:hover span::after {
   transform: translateY(-2px);
 }
 
-/* -------------------------------------------------------
-   KARTY – jemné přiblížení & stín při hover
-------------------------------------------------------- */
 .soft-shadow {
   box-shadow:
     0 2px 8px rgba(0, 0, 0, 0.04),
@@ -133,9 +108,6 @@ article:hover,
     0 14px 32px rgba(0, 0, 0, 0.08);
 }
 
-/* -------------------------------------------------------
-   OBRÁZKY – jemný zoom
-------------------------------------------------------- */
 img {
   transition: transform 0.6s ease;
 }
@@ -144,9 +116,6 @@ img:hover {
   transform: scale(1.03);
 }
 
-/* -------------------------------------------------------
-   LIGHTBOX
-------------------------------------------------------- */
 .lb {
   display: none;
   position: fixed;
@@ -164,9 +133,6 @@ img:hover {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
-/* -------------------------------------------------------
-   MOBILE IMPROVEMENTS
-------------------------------------------------------- */
 @media (max-width: 768px) {
   section,
   .section-swap {
@@ -174,7 +140,33 @@ img:hover {
   }
 
   img:hover {
-    transform: scale(1); /* Žádný zoom na mobilech */
+    transform: scale(1);
   }
 }
+
+.service-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: white;
+  padding: 24px;
+  text-align: center;
+}
+
+.benefit-card {
+  background: var(--bg2);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+}
+
+.inspiration-img {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
 
