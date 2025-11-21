@@ -1,6 +1,6 @@
 const { useState, useEffect, useMemo } = React;
 const MAIN_HERO =
-  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1800&auto=format&fit=crop";
+  "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?q=80&w=1800&auto=format&fit=crop";
 
 function useReveal() {
   useEffect(() => {
@@ -26,8 +26,11 @@ const STR = {
     heroSub: "Záclony · Závěsy · Rolety · Esence",
     cta: "Nezávazná konzultace",
 
-    homeAbout:
-      "Navrhuji stínění, které ctí architekturu, rytmus dne a prostor. Každý detail ladím tak, aby látka, světlo a vůně tvořily harmonii vašeho domova. Jsme rodinná služba s více než dvaceti lety zkušeností s prací s látkou, jemností detailu a atmosférou interiéru. Každý projekt vnímáme individuálně — s respektem k prostoru, světlu i vašemu stylu. Věřím, že dobře navržené stínění dokáže proměnit domov v místo, kde se cítíte klidně, příjemně a sami sebou.",
+    homeAbout: [
+      "Navrhuji stínění, které ctí architekturu, rytmus dne a prostor.",
+      "Každý detail ladím tak, aby látka, světlo a vůně tvořily harmonii vašeho domova. Jsme rodinná služba s více než dvaceti lety zkušeností s prací s látkou, jemností detailu a atmosférou interiéru.",
+      "Každý projekt vnímáme individuálně — s respektem k prostoru, světlu i vašemu stylu. Věřím, že dobře navržené stínění dokáže proměnit domov v místo, kde se cítíte klidně, příjemně a sami sebou."
+    ],
 
     servicesH: "Služby",
     services: [
@@ -37,7 +40,7 @@ const STR = {
       { name: "Technické systémy", note: "Minimalistické a funkční řešení." }
     ],
 
-    benefitsH: "Proč my",
+    benefitsH: "Proč s námi",
     benefits: [
       { name: "Individuální návrh", note: "Řešení vytvořené přesně pro váš prostor." },
       { name: "20 let zkušeností", note: "Znalost materiálů i technologií." },
@@ -46,22 +49,24 @@ const STR = {
 
     faqH: "Často se ptáte",
     faq: [
-      { q: "Jak probíhá konzultace?", a: "Přijedu k vám, podívám se na prostor, zvolíme směr a materiály." },
-      { q: "Jak dlouhá je výroba?", a: "Obvykle 3–6 týdnů podle materiálů a techniky." },
-      { q: "Mohu vidět vzorky?", a: "Ano, přivezu vám je osobně při konzultaci." },
-      { q: "Montujete i kolejnice?", a: "Ano, kompletní dodání na klíč." }
+      { q: "Jak probíhá konzultace?", a: "Přijedu k vám, podívám se na prostor, probereme vaše potřeby a zvolíme směr i materiály." },
+      { q: "Jak dlouho trvá výroba?", a: "Obvykle 3–6 týdnů podle rozsahu zakázky a dostupnosti materiálů." },
+      { q: "Mohu vidět vzorky?", a: "Ano, vzorky látek přivezu na osobní konzultaci přímo do vašeho prostoru." },
+      { q: "Montujete i kolejnice a systémy?", a: "Ano, zajišťujeme kompletní dodání včetně techniky a montáže." }
     ],
 
     inspH: "Atmosféra",
+
     priceH: "Kolik zaplatíte",
     priceP: "Ceny jsou orientační; závisí na materiálu, rozměrech a typu systému. Rámec sdělím na první schůzce.",
+
     processH: "Jak pracujeme",
 
     steps: ["Konzultace", "Návrh", "Realizace"],
     stepsTxt: [
-      "Poznáme váš prostor a očekávání, nastavíme rámec.",
-      "Zvolíme látky a technologii, připravíme harmonogram.",
-      "Precizní výroba, čistá montáž a hladké předání."
+      "Poznáme váš prostor, světlo a to, co od stínění očekáváte.",
+      "Vybereme vhodné látky a techniku, navrhneme konkrétní řešení a harmonogram.",
+      "Ušijeme na míru, zajistíme montáž a postaráme se o finální doladění."
     ],
 
     finishedH: "Hotové stínění",
@@ -147,13 +152,19 @@ const Header = ({ t, lang, setLang }) => {
         <div className="flex gap-2">
           <button
             onClick={() => setLang("cs")}
-            className={"px-3 py-1.5 text-sm rounded-lg border " + (lang === "cs" ? "border-[var(--sand)]" : "border-[var(--line)]")}
+            className={
+              "px-3 py-1.5 text-sm rounded-lg border " +
+              (lang === "cs" ? "border-[var(--sand)]" : "border-[var(--line)]")
+            }
           >
             CZ
           </button>
           <button
             onClick={() => setLang("en")}
-            className={"px-3 py-1.5 text-sm rounded-lg border " + (lang === "en" ? "border-[var(--sand)]" : "border-[var(--line)]")}
+            className={
+              "px-3 py-1.5 text-sm rounded-lg border " +
+              (lang === "en" ? "border-[var(--sand)]" : "border-[var(--line)]")
+            }
           >
             EN
           </button>
@@ -167,7 +178,10 @@ function Hero({ t, small = false, bg, showCta = false }) {
   useReveal();
   return (
     <section
-      className={(small ? "min-h-[42vh]" : "min-h-[92vh]") + " relative flex items-center reveal"}
+      className={
+        (small ? "min-h-[42vh]" : "min-h-[92vh]") +
+        " relative flex items-center reveal"
+      }
       style={{
         backgroundImage: `linear-gradient(to right, rgba(0,0,0,.20), rgba(0,0,0,.05)), url('${bg}')`,
         backgroundSize: "cover",
@@ -200,9 +214,29 @@ function Home({ t }) {
     <>
       <Hero t={t} bg={MAIN_HERO} showCta />
 
-      <section className="py-16 max-w-4xl mx-auto px-4 reveal">
-        <h2 className="script text-4xl mb-6">O nás</h2>
-        <p className="text-[var(--muted)] text-lg leading-relaxed">{t.homeAbout}</p>
+      <section className="py-16 max-w-6xl mx-auto px-4 reveal">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="soft-shadow rounded-2xl overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <h2 className="script text-4xl mb-4">O nás</h2>
+            {t.homeAbout.map((p, idx) => (
+              <p
+                key={idx}
+                className={
+                  "text-[var(--muted)] text-lg leading-relaxed" +
+                  (idx > 0 ? " mt-4" : "")
+                }
+              >
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="py-16 max-w-6xl mx-auto px-4 reveal">
@@ -210,8 +244,10 @@ function Home({ t }) {
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
           {t.services.map((s, i) => (
             <div key={i} className="service-card soft-shadow reveal">
-              <div className="script text-3xl mb-2">{s.name}</div>
-              <p className="text-[var(--muted)]">{s.note}</p>
+              <div className="text-lg font-semibold mb-1">{s.name}</div>
+              <p className="text-[var(--muted)] text-sm leading-relaxed">
+                {s.note}
+              </p>
             </div>
           ))}
         </div>
@@ -222,8 +258,10 @@ function Home({ t }) {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {t.benefits.map((b, i) => (
             <div key={i} className="benefit-card soft-shadow reveal">
-              <div className="script text-3xl mb-2">{b.name}</div>
-              <p className="text-[var(--muted)]">{b.note}</p>
+              <div className="text-lg font-semibold mb-2">{b.name}</div>
+              <p className="text-[var(--muted)] text-sm leading-relaxed">
+                {b.note}
+              </p>
             </div>
           ))}
         </div>
@@ -257,7 +295,10 @@ function Home({ t }) {
             "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop"
           ].map((src, i) => (
             <div key={i} className="inspiration-img soft-shadow overflow-hidden">
-              <img src={src} className="w-full h-full object-cover aspect-[4/3]" />
+              <img
+                src={src}
+                className="w-full h-full object-cover aspect-[4/3]"
+              />
             </div>
           ))}
         </div>
@@ -280,19 +321,34 @@ function Process({ t }) {
       <Hero t={t} small bg={IMGS[1]} />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
-        <h2 className="script text-4xl mb-10 text-left md:text-center">{t.processH}</h2>
+        <h2 className="script text-4xl mb-6 text-left md:text-center">
+          {t.processH}
+        </h2>
+        <p className="text-[var(--muted)] max-w-3xl mx-auto mb-10 text-center">
+          Společně projdeme váš prostor, světlo během dne i to, jak v interiéru
+          trávíte čas. Z toho vychází návrh stínění, které je funkční a zároveň
+          podpoří atmosféru domova.
+        </p>
 
         <div className="grid md:grid-cols-3 gap-8">
           {t.steps.map((step, i) => (
             <div className="flex flex-col h-full reveal" key={i}>
-              <img src={IMGS[i]} className="rounded-2xl soft-shadow w-full mb-4 object-cover aspect-[4/3]" />
+              <img
+                src={IMGS[i]}
+                className="rounded-2xl soft-shadow w-full mb-4 object-cover aspect-[4/3]"
+              />
               <div className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow flex-1 flex flex-col">
-                <div className="script text-3xl mb-2">{step}</div>
+                <div className="text-lg font-semibold mb-2">{step}</div>
                 <p className="text-[var(--muted)] flex-1">{t.stepsTxt[i]}</p>
               </div>
             </div>
           ))}
         </div>
+
+        <p className="text-[var(--muted)] max-w-3xl mx-auto mt-10 text-sm md:text-base text-center">
+          Cílem je, abyste se v prostoru cítili přirozeně a klidně – bez
+          kompromisů mezi estetikou a praktičností.
+        </p>
       </section>
     </>
   );
@@ -300,6 +356,12 @@ function Process({ t }) {
 
 function Pricing({ t }) {
   useReveal();
+
+  const details = [
+    "Ideální, když chcete jemné denní světlo, ale zachovat si soukromí.",
+    "Pro večerní zatemnění, akustický komfort a pocit útulna.",
+    "Technické zázemí, které drží celé řešení elegantně a spolehlivě."
+  ];
 
   return (
     <>
@@ -311,16 +373,33 @@ function Pricing({ t }) {
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
         <h2 className="script text-4xl mb-4">{t.priceH}</h2>
         <p className="text-[var(--muted)] max-w-3xl">{t.priceP}</p>
+
         <div className="mt-8 grid md:grid-cols-3 gap-4">
-          {["Voile / Záclona", "Závěs (blackout/dim-out)", "Kolejnice / systém"].map((name, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow reveal"
-            >
-              <div className="font-semibold mb-2">{name}</div>
-              <div className="text-sm text-[var(--muted)]">Cena na míru po zaměření • materiál, rozměr, ušití</div>
-            </div>
-          ))}
+          {["Voile / Záclona", "Závěs (blackout/dim-out)", "Kolejnice / systém"].map(
+            (name, i) => (
+              <div
+                key={i}
+                className="rounded-2xl bg-white border border-[var(--line)] p-6 soft-shadow reveal"
+              >
+                <div className="font-semibold mb-2">{name}</div>
+                <div className="text-sm text-[var(--muted)] mb-2">
+                  Cena na míru po zaměření • materiál, rozměr, ušití
+                </div>
+                <div className="text-sm text-[var(--muted)]">
+                  {details[i]}
+                </div>
+              </div>
+            )
+          )}
+        </div>
+
+        <div className="mt-10 max-w-3xl text-sm text-[var(--muted)]">
+          <div className="font-semibold mb-2">Co ovlivňuje cenu</div>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>typ a kvalita zvoleného materiálu, jeho gramáž a údržba,</li>
+            <li>rozměry oken a výška montáže,</li>
+            <li>náročnost technického řešení (ohyby, střešní okna, kombinace vrstev).</li>
+          </ul>
         </div>
       </section>
     </>
@@ -348,12 +427,24 @@ function Gallery({ t }) {
       />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
-        <h2 className="script text-4xl mb-6">{t.galleryH}</h2>
+        <h2 className="script text-4xl mb-4">{t.galleryH}</h2>
+        <p className="text-[var(--muted)] max-w-3xl mb-8">
+          Výběr realizací, kde hraje roli světlo, látka a proporce prostoru.
+          Fotografie průběžně obměňujeme podle aktuálních projektů.
+        </p>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {GALLERY.map((src, i) => (
-            <a key={i} href={src} className="relative group reveal" onClick={(e) => openLightbox(e, src)}>
-              <img src={src} className="rounded-xl soft-shadow w-full h-full object-cover aspect-[4/3]" />
+            <a
+              key={i}
+              href={src}
+              className="relative group reveal"
+              onClick={(e) => openLightbox(e, src)}
+            >
+              <img
+                src={src}
+                className="rounded-xl soft-shadow w-full h-full object-cover aspect-[4/3]"
+              />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition rounded-xl"></div>
             </a>
           ))}
@@ -366,6 +457,33 @@ function Gallery({ t }) {
 function Finished({ t }) {
   useReveal();
 
+  const IMGS = [
+    "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1521783988139-893ce3cdb4e8?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1484100356142-db6ab6244067?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop"
+  ];
+
+  const uses = [
+    "Silné zatemnění pro klidný, nerušený spánek.",
+    "Jemné denní světlo s pocitem lehkosti.",
+    "Dekorativní vrstva, která prostoru dodá výraz.",
+    "Spojení praktičnosti a estetiky v jedné kompozici.",
+    "Řešení pro velká okna, kanceláře či atypické prostory.",
+    "Pro projekty, kde je potřeba jít za běžné standardy."
+  ];
+
+  const idealFor = [
+    "Ideální pro ložnice, dětské pokoje a projekční místnosti.",
+    "Vhodné do obývacích pokojů, kuchyní a společných prostor.",
+    "Nejlépe funguje v obývacích pokojích, jídelnách a reprezentativních místnostech.",
+    "Vhodné tam, kde potřebujete scénovat světlo během dne i večera.",
+    "Doporučeno pro minimalistické interiéry a moderní architekturu.",
+    "Pro interiéry s konkrétním zadáním a specifickými požadavky."
+  ];
+
   return (
     <>
       <Hero
@@ -375,12 +493,28 @@ function Finished({ t }) {
       />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
-        <h2 className="script text-4xl mb-6">{t.finishedH}</h2>
+        <h2 className="script text-4xl mb-4">{t.finishedH}</h2>
+        <p className="text-[var(--muted)] max-w-3xl mb-8">
+          Nabízíme několik základních typů hotového stínění, které umíme dále
+          přizpůsobit vašemu prostoru. Každý typ má své optimální použití – od
+          ložnicového zatemnění až po jemné vrstvení ve společenských
+          místnostech.
+        </p>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {t.finished.map((f, i) => (
-            <div key={i} className="rounded-2xl border border-[var(--line)] p-6 soft-shadow reveal bg-gradient-to-b from-white to-[var(--bg2)]">
-              <div className="script text-3xl mb-2">{f.name}</div>
-              <p className="text-[var(--muted)]">{f.note}</p>
+            <div
+              key={i}
+              className="rounded-2xl border border-[var(--line)] p-4 soft-shadow reveal bg-gradient-to-b from-white to-[var(--bg2)] flex flex-col"
+            >
+              <img
+                src={IMGS[i]}
+                className="w-full h-36 object-cover rounded-xl mb-3"
+              />
+              <div className="text-base font-semibold mb-1">{f.name}</div>
+              <p className="text-[var(--muted)] text-sm mb-2">{f.note}</p>
+              <p className="text-[var(--muted)] text-xs mb-1">{uses[i]}</p>
+              <p className="text-[var(--muted)] text-xs">{idealFor[i]}</p>
             </div>
           ))}
         </div>
@@ -401,13 +535,21 @@ function Essences({ t }) {
       />
 
       <section className="max-w-6xl mx-auto px-4 py-16 reveal">
-        <h2 className="script text-4xl mb-6">{t.essenceH}</h2>
+        <h2 className="script text-4xl mb-4">{t.essenceH}</h2>
+        <p className="text-[var(--muted)] max-w-3xl mb-8">
+          Vůně jemně doplňuje vizuální dojem z prostoru. Pomáhá dotvořit atmosféru,
+          která se pojí se světlem, látkou i rytmem dne. Vybrané esence
+          používáme jako nenápadný, ale výrazný prvek celkového vnímání interiéru.
+        </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {t.essences.map((e, i) => (
-            <div key={i} className="rounded-2xl border border-[var(--line)] p-6 soft-shadow reveal bg-gradient-to-b from-white to-[var(--bg2)]">
-              <h3 className="script text-3xl">{e.name}</h3>
-              <p className="text-[var(--muted)] mt-2">{e.note}</p>
+            <div
+              key={i}
+              className="rounded-2xl border border-[var(--line)] p-6 soft-shadow reveal bg-gradient-to-b from-white to-[var(--bg2)]"
+            >
+              <h3 className="text-base font-semibold">{e.name}</h3>
+              <p className="text-[var(--muted)] mt-2 text-sm">{e.note}</p>
             </div>
           ))}
         </div>
@@ -432,16 +574,43 @@ function Contact({ t }) {
 
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <p><strong>{t.name}</strong><br />Jana Segelberg</p>
+            <p>
+              <strong>{t.name}</strong>
+              <br />
+              Jana Segelberg
+            </p>
 
-            <p className="mt-3"><strong>E-mail</strong><br />
-              <a href="mailto:hello@janasegelberg.com" className="underline">hello@janasegelberg.com</a></p>
+            <p className="mt-3">
+              <strong>E-mail</strong>
+              <br />
+              <a
+                href="mailto:hello@janasegelberg.com"
+                className="underline"
+              >
+                hello@janasegelberg.com
+              </a>
+            </p>
 
-            <p className="mt-3"><strong>Telefon</strong><br />
-              <a href="tel:+420724379309" className="underline">+420 724 379 309</a></p>
+            <p className="mt-3">
+              <strong>Telefon</strong>
+              <br />
+              <a href="tel:+420724379309" className="underline">
+                +420 724 379 309
+              </a>
+            </p>
 
-            <p className="text-[var(--muted)] text-sm mt-6">
-              Po schválení vizuálu napojíme formulář na Google Sheets + auto-reply (CZ/EN).
+            <div className="text-[var(--muted)] text-sm mt-6 space-y-2">
+              <div className="font-semibold">Jak to probíhá</div>
+              <ol className="list-decimal pl-5 space-y-1">
+                <li>Pošlete krátkou zprávu a případně fotografie oken či prostoru.</li>
+                <li>Ozvu se vám s návrhem termínu konzultace.</li>
+                <li>Na místě společně doladíme řešení, které pro vás připravím.</li>
+              </ol>
+            </div>
+
+            <p className="text-[var(--muted)] text-sm mt-4">
+              Po schválení vizuálu je možné napojit formulář na systém pro
+              zpracování poptávek a potvrzení termínů.
             </p>
           </div>
 
@@ -449,24 +618,50 @@ function Contact({ t }) {
             <div className="grid gap-4">
               <label className="text-sm">
                 {t.name}
-                <input className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required />
+                <input
+                  className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]"
+                  required
+                />
               </label>
 
               <label className="text-sm">
                 {t.email}
-                <input type="email" className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required />
+                <input
+                  type="email"
+                  className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]"
+                  required
+                />
               </label>
 
               <label className="text-sm">
                 {t.message}
-                <textarea rows="5" className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]" required></textarea>
+                <textarea
+                  rows="5"
+                  className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)]"
+                  required
+                ></textarea>
               </label>
 
-              <button type="button" className="btn-cta px-5 py-3 rounded-full bg-[var(--sand)] text-[var(--text)] font-bold border border-black/5">
+              <label className="text-sm">
+                Fotografie (volitelné)
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className="mt-1 w-full border rounded-lg px-3 py-2 border-[var(--line)] bg-white"
+                />
+              </label>
+
+              <button
+                type="button"
+                className="btn-cta px-5 py-3 rounded-full bg-[var(--sand)] text-[var(--text)] font-bold border border-black/5"
+              >
                 {t.send}
               </button>
 
-              <p className="text-[var(--muted)] text-sm">* Demo formulář – bez odesílání.</p>
+              <p className="text-[var(--muted)] text-sm">
+                * Demo formulář – bez odesílání.
+              </p>
             </div>
           </form>
         </div>
@@ -513,21 +708,31 @@ function App() {
 
           <div className="grid gap-2">
             <div className="font-semibold">Osobní přístup</div>
-            <div className="text-sm text-[#bdbdbd]">Řešení na míru vašemu stylu.</div>
+            <div className="text-sm text-[#bdbdbd]">
+              Řešení na míru vašemu stylu.
+            </div>
             <div className="font-semibold mt-3">Prémiová kvalita</div>
-            <div className="text-sm text-[#bdbdbd]">Pečlivé zpracování detailů.</div>
+            <div className="text-sm text-[#bdbdbd]">
+              Pečlivé zpracování detailů.
+            </div>
             <div className="font-semibold mt-3">Ověřená odbornost</div>
             <div className="text-sm text-[#bdbdbd]">Dvacet let zkušeností.</div>
           </div>
 
           <div className="text-sm text-[#bdbdbd]">
-            <p>&copy; 2025 {t.brand1}. {t.rights}</p>
+            <p>
+              &copy; 2025 {t.brand1}. {t.rights}
+            </p>
           </div>
         </div>
       </footer>
 
       <div id="lb" className="lb" onClick={closeLightbox} aria-hidden="true">
-        <button className="absolute top-5 right-6 text-white text-3xl" aria-label="Close" onClick={closeLightbox}>
+        <button
+          className="absolute top-5 right-6 text-white text-3xl"
+          aria-label="Close"
+          onClick={closeLightbox}
+        >
           &times;
         </button>
         <img id="lbimg" alt="preview" />
@@ -549,6 +754,7 @@ function closeLightbox() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
 
 
 
