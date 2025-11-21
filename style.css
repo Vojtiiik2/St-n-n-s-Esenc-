@@ -149,7 +149,7 @@ img:hover {
   border-radius: 16px;
   background: white;
   padding: 24px;
-  text-align: center;
+  text-align: left;
 }
 
 .benefit-card {
@@ -168,5 +168,6 @@ img:hover {
   border-radius: 20px;
   overflow: hidden;
 }
+
 
 
